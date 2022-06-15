@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>CV</title>
+		<style>
+			@font-face {
+				font-family: 'Montserrat';
+				font-style: normal;
+				font-weight: 400;
+				font-display: swap;
+				src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
+				unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+			}
+
+			*,
+			*::after,
+			*::after {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: 'Montserrat';
+			}
+
+			body {
+				-ms-overflow-style: none;
+				scrollbar-width: none;
+			}
+
+			body::-webkit-scrollbar {
+				display: none;
+				background-color: #f5f5f5;
+			}
+
+			main {
+				position: relative;
+				min-height: 200vh;
+				max-height: 100%;
+				background-color: #000;
+				color: #fff;
+			}
+
+			progress {
+				position: sticky;
+				top: 0;
+				width: 100%;
+				height: 0.5rem;
+				z-index: 20000;
+				background-color: rgba(0, 0, 0, 0);
+				color: #fff;
+			}
+
+			progress::-webkit-progress-bar {
+				background-color: rgba(0, 0, 0, 0);
+				width: 100%;
+			}
+
+			progress::-webkit-progress-value {
+				background-color: #fff !important;
+			}
+
+			progress-moz-progress-bar {
+				background-color: #fff !important;
+			}
+
+			.para {
+				font-size: 1.3rem;
+				text-align: center;
+				margin-top: 20px;
+			}
+
+			.list li {
+				list-style-type: none;
+				transition: all 0.8s ease-out;
+			}
+
+			.list {
+				width: 100%;
+				height: 70%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-evenly;
+				text-align: center;
+				margin-top: 50%;
+				font-size: 1.2rem;
+				line-height: 3rem;
+			}
+
+			.list li .list-included {
+				margin-left: 50%;
+			}
+
+			.list li .list-included li {
+				list-style-type: disclosure-closed;
+				text-align: left;
+				font-size: 1rem;
+				line-height: 1.5rem;
+			}
+
+			.list li .list-included li a {
+				font-size: 1rem;
+				line-height: 1.5rem;
+				text-decoration: none;
+				color: #fff;
+			}
+
+			.list li .list-included li a:hover {
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<progress></progress>
+			<p class="para" id="para"></p>
+			<ul class="list" id="list"></ul>
+		</main>
+
+		<script>
+			window.addEventListener('scroll', () => {
+				const winScroll = document.documentElement.scrollTop;
+				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+				const scrolled = winScroll / height;
+
+				document.getElementsByTagName('PROGRESS')[0].value = isFinite(scrolled) ? scrolled : 0;
+
+				if (document.documentElement.scrollTop >= document.getElementById('para').getBoundingClientRect().bottom) {
+					clearInterval(type);
+
+					document.getElementById('para').style.display = 'none';
+				}
+			});
+
+			const str = 'scroll below...';
+			let t = [];
+			let i = 0;
+
+			const type = setInterval(() => {
+				if (i < str.length) {
+					t.push(str[i]);
+					document.getElementById('para').textContent = t.join('');
+					i++;
+				} else {
+					t = [];
+					i = 0;
+				}
+			}, 90);
+
+			const data = [
+				{ key: 'ФИО:', value: 'Ганиев Максим Джаборович' },
+				{ key: 'Дата рождения:', value: '19.08.1991' },
+				{ key: 'Город проживания:', value: 'Санкт-Петербург' },
+				{
+					key: 'Образование:',
+					value: 'Высшее (СПбГУ, Ф-т филологии), курсы повышения квалификации (Udemy, Freecode Camp)',
+				},
+				{ key: 'Общий опыт в айти, включая фриланс и период обучения:', value: '2.2 года' },
+				{ key: 'Опыт коммерческой разработки:', value: '0.6 года' },
+				{ key: 'Должность на текущем месте работы:', value: 'Веб-разработчик (фуллстак)' },
+				{ key: 'Место работы:', value: 'ООО "Элком"' },
+				{
+					key: 'Сфера деятельности компании:',
+					value: 'Один из крупнейших игроков в сегменте поставок промышленного оборудования на территории СНГ',
+				},
+				{
+					key: 'Обязанности в роли девелопера:',
+					value: 'Разработка блоков и сервисов для специалистов и клиентов компании (разработка БД, программирование серверной и клиентской частей блоков)',
+				},
+				{
+					key: 'Стек:',
+					value: [
+						'ECMAScript 06 (модульный)',
+						'React, VUE',
+						'PHP7',
+						'Laravel',
+						'CSS (SASS)',
+						'Bootstrap',
+						'HTML5',
+						'Git',
+						'MySQL',
+					],
+				},
+				{
+					key: 'Ссылки',
+					value: [
+						{
+							key: 'Репозиторий (здесь в основном учебные проекты и несколько фрилансовых, репо текущего проекта - приватный):',
+							value: 'https://github.com/maxganiev',
+						},
+						{
+							key: 'Конфигуратор для расчета стоимости доставки:',
+							value: 'https://lcl-freight-calc.herokuapp.com/',
+						},
+						{ key: 'Конфигуратор подбора электродвигателей:', value: 'https://www.elcomspb.ru/test_adchr/' },
+						{ key: 'Конфигуратор подбора мотор-редукторов:', value: 'https://www.elcomspb.ru/gearbox_selection/' },
+						{
+							key: 'Корпоративная страничка различными эпизодами из жизни компании:',
+							value: 'https://www.elcomspb.ru/welcome_video/',
+						},
+						{
+							key: 'Конфигуратор подбора насосного оборудования (в процессе разработки):',
+							value: 'https://www.elcomspb.ru/index.php?route=tool/pumps_selector/pumps_selector',
+						},
+					],
+				},
+			];
+
+			const list = document.getElementById('list');
+
+			data.forEach((item, index) => {
+				const listItem = document.createElement('li');
+
+				if (typeof item.value === 'string') {
+					listItem.innerHTML = `<strong> ${item.key} </strong> ${item.value}`;
+				} else if (typeof item.value === 'object' && Array.isArray(item.value)) {
+					const array = item.value;
+					listItem.innerHTML = `<strong> ${item.key} </strong>`;
+
+					if (typeof array[0] === 'string') {
+						const listIncluded = document.createElement('ul');
+						listIncluded.classList.add('list-included');
+						listIncluded.innerHTML = array.map((_item) => `<li> ${_item} </li>`).join('');
+						listItem.appendChild(listIncluded);
+						listItem.style.marginTop = '5%';
+					} else {
+						const listIncluded = document.createElement('ul');
+						listIncluded.classList.add('list-included');
+						listIncluded.innerHTML = array
+							.map((_item) => `<li> <a href="${_item.value}"> ${_item.key} </a> </li>`)
+							.join('');
+						listItem.appendChild(listIncluded);
+						listItem.style.marginTop = '5%';
+					}
+				}
+
+				listItem.style.transform = `translateX(${index % 2 !== 0 ? '-100%' : '100%'})`;
+				list.appendChild(listItem);
+
+				window.addEventListener('scroll', () => {
+					if (document.documentElement.scrollTop >= listItem.getBoundingClientRect().top / 1.5) {
+						listItem.style.transform = 'translateX(0%)';
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
