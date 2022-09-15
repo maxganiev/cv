@@ -4,15 +4,22 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>CV</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
+		<script src="https://kit.fontawesome.com/dd7cb428b6.js" crossorigin="anonymous"></script>
+		<title>Ganiev Maxim | webdev</title>
 		<style>
 			@font-face {
 				font-family: 'Montserrat';
 				font-style: normal;
 				font-weight: 400;
-				font-display: swap;
-				src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
-				unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+				src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+				unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
+					U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 			}
 
 			*,
@@ -22,6 +29,17 @@
 				padding: 0;
 				box-sizing: border-box;
 				font-family: 'Montserrat';
+			}
+
+			:root {
+				--fs-vlg: 3.6vh;
+				--fs-lg: 2.6vh;
+				--fs-mid: 1.8vh;
+				--fs-sm: 1.5vh;
+				--fs-vsm: 1vh;
+
+				--bg-clr-blue: #659dbd;
+				--bg-clr-brown: #daad86;
 			}
 
 			body {
@@ -36,218 +54,376 @@
 
 			main {
 				position: relative;
-				min-height: 150vh;
-				max-height: 100%;
-				background-color: #000;
-				color: #fff;
+				height: 150vh;
+				background-color: #fbeec1;
 			}
 
-			progress {
+			main .div-progress {
 				position: sticky;
 				top: 0;
-				width: 100%;
+				left: 0;
+				width: 0%;
 				height: 0.5rem;
 				z-index: 20000;
-				background-color: rgba(0, 0, 0, 0);
+				background-color: var(--bg-clr-blue);
+				transition: width 0.6s ease-out;
+			}
+
+			main .div-wrapper-fixed {
+				position: absolute;
+				width: 100%;
+				height: 75%;
+				top: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			main .div-wrapper-fixed .fa-solid.fa-computer-mouse {
+				position: fixed;
+				top: 93vh;
+				font-size: var(--fs-vlg);
+				color: var(--bg-clr-blue);
+				transition: top 0.6s ease-out;
+			}
+
+			main .div-wrapper-fixed .div-rotatable {
+				height: 70vh;
+				aspect-ratio: 1/1;
+				transform-style: preserve-3d;
+				transition: all 0.3s ease-in;
+				transform: rotate3d(1, 0, 0, 0deg);
+				position: fixed;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-front {
+				background: var(--bg-clr-blue);
+				color: #fff;
+				transform: translateZ(35vh);
+				width: 100%;
+				height: 100%;
+				backface-visibility: hidden;
+				position: absolute;
+				display: flex;
+				justify-content: space-evenly;
+				align-items: center;
+				flex-direction: column;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-front .div-thumbnail {
+				height: 80%;
+				flex: 1;
+				transform: translateX(-300%);
+				transition: all 0.6s ease-out;
+				position: relative;
+				width: 100%;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-front .div-thumbnail img {
+				height: 90%;
+				object-fit: contain;
+				border-radius: 200px;
+				position: absolute;
+				top: 10%;
+				left: 50px;
+				display: block;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-front .div-list-bio {
+				height: 100%;
+				flex: 1;
+				transform: translateX(300%);
+				transition: all 0.6s ease-out;
+				display: flex;
+				justify-content: left;
+				align-items: center;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-front .div-list-bio .list-bio {
+				display: flex;
+				flex-direction: column;
+				width: 90%;
+				margin: 30px 0 30px 30px;
+				list-style-type: none;
+				color: #000;
+				/* line-height: 1.6rem; */
+				font-size: var(--fs-mid);
+				background: var(--bg-clr-brown);
+				padding: 10px;
+				border-radius: 2% 5%;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-bottom {
+				background: var(--bg-clr-blue);
+				transform: rotateX(180deg) rotateY(0deg) translateZ(20vh);
+				width: 100%;
+				height: 100%;
+				backface-visibility: hidden;
+				position: absolute;
+				text-align: center;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-bottom p {
+				font-size: var(--fs-lg);
+				margin: 40% 0 0 calc(18% - 2.6vh);
+				width: 70%;
+				color: #fff;
+				display: block;
+				padding-bottom: 20px;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-bottom a {
+				font-size: var(--fs-vlg);
 				color: #fff;
 			}
 
-			progress::-webkit-progress-bar {
-				background-color: rgba(0, 0, 0, 0);
+			main .div-wrapper-fixed .div-rotatable .div-face-bottom a:hover {
+				text-decoration: none;
+				color: var(--bg-clr-blue);
+				text-shadow: #000 1px 0.5px 0.5px;
+				transition: all 0.2s ease-out;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-middle {
+				transform: rotateX(-90deg) translateZ(35vh);
 				width: 100%;
+				height: 100%;
+				backface-visibility: hidden;
+				background-color: var(--bg-clr-brown);
+				position: absolute;
+				display: flex;
+				justify-content: start;
+				align-items: center;
 			}
 
-			progress::-webkit-progress-value {
-				background-color: #fff !important;
-			}
-
-			progress-moz-progress-bar {
-				background-color: #fff !important;
-			}
-
-			.para {
-				font-size: 1.3rem;
-				text-align: center;
-				margin-top: 20px;
-			}
-
-			.list li {
+			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li {
 				list-style-type: none;
 				transition: all 0.8s ease-out;
 			}
 
-			.list {
+			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack {
 				width: 100%;
-				height: 70%;
+				height: 100%;
 				display: flex;
 				flex-direction: column;
-				justify-content: space-evenly;
-				text-align: center;
-				margin-top: 50%;
-				font-size: 1.2rem;
-				line-height: 3rem;
+				text-align: left;
+				font-size: var(--fs-mid);
+				/* line-height: 1.5rem; */
 				transition: all 0.56s ease-in;
+				padding-left: 0.9rem;
+				justify-content: center;
 			}
 
-			.list li .list-included {
-				margin-left: 50%;
+			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li .list-included {
+				margin-left: 5%;
 			}
 
-			.list li .list-included li {
+			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li strong {
+				font-size: var(--fs-mid);
+				margin: 0 0 20px 5%;
+				display: block;
+				padding-left: 0.9rem;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li .list-included li {
 				list-style-type: disclosure-closed;
 				text-align: left;
-				font-size: 1rem;
-				line-height: 1.5rem;
+				font-size: var(--fs-mid);
+				/* line-height: 1.5rem; */
 			}
 
-			.list li .list-included li a {
-				font-size: 1rem;
-				line-height: 1.5rem;
+			a {
+				font-size: var(--fs-mid);
+				color: #000;
 				text-decoration: none;
-				color: #fff;
+				font-style: italic;
 			}
 
-			.list li .list-included li a:hover {
+			a:hover {
 				text-decoration: underline;
+			}
+
+			sup {
+				font-size: var(--fs-sm);
 			}
 		</style>
 	</head>
 	<body>
 		<main>
-			<progress></progress>
-			<p class="para" id="para"></p>
-			<ul class="list" id="list"></ul>
+			<div class="div-progress" id="div-progress"></div>
+			<!-- <progress></progress> -->
+			<div class="div-wrapper-fixed">
+				<div class="div-rotatable" id="div-rotatable">
+					<div class="div-face-front" id="div-face-front">
+						<div class="div-thumbnail"><img src="./pic.jpg" alt="a thumbnail" /></div>
+						<div class="div-list-bio">
+							<ul class="list-bio" id="list-bio"></ul>
+						</div>
+					</div>
+					<div class="div-face-bottom" id="div-face-bottom">
+						<p>Hit me up if you have any project, or just want to talk</p>
+					</div>
+					<div class="div-face-middle">
+						<ul class="list-stack" id="list-stack"></ul>
+					</div>
+				</div>
+				<i class="fa-solid fa-computer-mouse"></i>
+			</div>
 		</main>
 
 		<script>
+			const divWrapperRotatable = document.getElementById('div-rotatable');
+			const listBio = document.getElementById('list-bio');
+			const listStack = document.getElementById('list-stack');
+			const divFaceFront = document.getElementById('div-face-front');
+			const divFaceBottom = document.getElementById('div-face-bottom');
+			const main = document.getElementsByTagName('main')[0];
+			const progress = document.getElementById('div-progress');
+			const mouseFontAwesome = document.querySelector('.fa-solid.fa-computer-mouse');
+
+			setTimeout(() => {
+				Array.from(divFaceFront.children).forEach((child) => (child.style.transform = 'translateX(0%)'));
+			}, 400);
+
+			const int = setInterval(() => {
+				if (document.documentElement.scrollTop !== 0) {
+					mouseFontAwesome.style.display = 'none';
+					clearInterval(int);
+				} else {
+					if (mouseFontAwesome.style.top === '93vh')
+						setTimeout(() => {
+							mouseFontAwesome.style.top = '90vh';
+						}, 50);
+					else
+						setTimeout(() => {
+							mouseFontAwesome.style.top = '93vh';
+						}, 50);
+				}
+			}, 200);
+
 			window.addEventListener('scroll', () => {
-				const winScroll = document.documentElement.scrollTop;
+				const scrollPos = document.documentElement.scrollTop;
 				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-				const scrolled = winScroll / height;
 
-				document.getElementsByTagName('PROGRESS')[0].value = isFinite(scrolled) ? scrolled : 0;
+				let rotateK;
+				if (scrollPos > 0 && scrollPos <= height / 2) rotateK = 100;
+				else if (scrollPos > height / 2) rotateK = 180;
+				else rotateK = 0;
 
-				if (document.documentElement.scrollTop >= document.getElementById('para').getBoundingClientRect().bottom) {
-					clearInterval(type);
-					document.getElementById('para').style.display = 'none';
-				}
+				divWrapperRotatable.style.transform = `rotate3d(1, 0, 0, ${rotateK}deg)`;
 
-				if (document.getElementsByTagName('PROGRESS')[0].value >= 0.8) {
-					list.style.marginTop = '10%';
-				}
+				if (rotateK === 100) Array.from(listStack.children).forEach((child) => (child.style.transform = 'translateX(0%)'));
+
+				progress.style.width = rotateK === 0 ? '0%' : rotateK === 100 ? '50%' : '100%';
 			});
 
-			const str = 'scroll below...';
-			let t = [];
-			let i = 0;
-
-			const type = setInterval(() => {
-				if (i < str.length) {
-					t.push(str[i]);
-					document.getElementById('para').textContent = t.join('');
-					i++;
-				} else {
-					t = [];
-					i = 0;
-				}
-			}, 90);
+			const UA =
+				'<div style="width:40px; height: 10px; display: inline-block"> <div style="background-color: blue; width: 100%; height: 100%"> </div> <div style="background-color: yellow; width: 100%; height: 100%"> </div> </div>';
 
 			const data = [
-				{ key: 'ФИО:', value: 'Ганиев Максим Джаборович' },
-				{ key: 'Дата рождения:', value: '19.08.1991' },
-				{ key: 'Город проживания:', value: 'Санкт-Петербург' },
+				{ key: 'Full Name:', value: 'Ganiev Maxim' },
+				{ key: 'Birthday:', value: '19.08.1991' },
+				{ key: 'Current location:', value: 'Saint-Petersburg, RF' },
+				{ key: 'Commercial experience in IT industry:', value: '1.2 year' },
 				{
-					key: 'Образование:',
-					value: 'Высшее (СПбГУ, Ф-т филологии), курсы повышения квалификации (Udemy, Freecode Camp)',
-				},
-				{ key: 'Общий опыт в айти, включая фриланс и период обучения:', value: '2.2 года' },
-				{ key: 'Опыт коммерческой разработки:', value: '0.6 года' },
-				{ key: 'Должность на текущем месте работы:', value: 'Веб-разработчик (фуллстак)' },
-				{ key: 'Место работы:', value: 'ООО "Элком"' },
-				{
-					key: 'Сфера деятельности компании:',
-					value: 'Один из крупнейших игроков в сегменте поставок промышленного оборудования на территории СНГ',
+					key: 'Current occupation:',
+					value: 'Full stack web developer in <a href="https://www.elcomspb.ru/"> Elcom Ltd.</a>',
 				},
 				{
-					key: 'Обязанности в роли девелопера:',
-					value: 'Разработка блоков и сервисов для специалистов и клиентов компании (разработка БД, программирование серверной и клиентской частей блоков)',
+					key: 'Key responsibilities:',
+					value: 'Architecture and frontend blocks design, support and updates of the main product company website along with additional independent tools to serve company managers and customers needs',
 				},
 				{
-					key: 'Стек:',
+					key: '',
+					value: `I am mostly specialized in Frontend, but also can build fullstack apps. <br/> Inspired by <a href="https://www.traversymedia.com/"> Brad Traversy </a> and <a href="https://twitter.com/Rich_Harris?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"> Rich Harris </a>, like to use <a href="https://svelte.dev/"> Svelte </a> <br/>  Love snowboarding, big tennis, and my wife. Stand with ${UA}`,
+				},
+				{
+					key: 'Stack:',
 					value: [
-						'ECMAScript 06 (модульный)',
-						'React, VUE',
-						'PHP7',
+						'JavaScript 06',
+						'Svelte &#10084; , SvelteKit &#10084; &#10084;, React, Vue',
+						'Prisma ORM',
+						'PHP7, NodeJS (Express)',
 						'Laravel',
-						'CSS (SASS)',
-						'Bootstrap',
-						'HTML5',
+						'CSS (SASS), Bootstrap',
+						'Compilers (Webpack, Snowpack, Vite &#10084;)',
+						'MySQL (quiries, configuration)',
 						'Git',
-						'MySQL',
+						'can work with platforms like Netlify, Heroku',
+						'able to configure NGINX server',
+						'work on Windows 10 and Ubuntu, also can work with OSX',
 					],
 				},
 				{
-					key: 'Ссылки:',
+					key: 'Links to couple of my projects are in below (however some apps can be used with Russian language though atm, sorry):',
 					value: [
 						{
-							key: 'Репозиторий (здесь в основном учебные проекты и несколько фрилансовых, репо текущего проекта - приватный)',
-							value: 'https://github.com/maxganiev',
+							key: '',
+							value: '<a href="https://www.elcomspb.ru/pumps_selector/" > Pump selector tool </a>',
 						},
 						{
-							key: 'Конфигуратор для расчета стоимости доставки',
-							value: 'https://lcl-freight-calc.herokuapp.com/',
-						},
-						{ key: 'Конфигуратор подбора электродвигателей', value: 'https://www.elcomspb.ru/test_adchr/' },
-						{ key: 'Конфигуратор подбора мотор-редукторов', value: 'https://www.elcomspb.ru/gearbox_selection/' },
-						{
-							key: 'Корпоративная страничка различными эпизодами из жизни компании',
-							value: 'https://www.elcomspb.ru/welcome_video/',
+							key: '',
+							value: '<a href="https://lcl-freight-calc.herokuapp.com/"> Logistic air freight charges tool </a> <sup>* only in Russian </sup>',
 						},
 						{
-							key: 'Конфигуратор подбора насосного оборудования (в процессе разработки)',
-							value: 'https://www.elcomspb.ru/index.php?route=tool/pumps_selector/pumps_selector',
+							key: '',
+							value: '<a href="https://www.elcomspb.ru/adchr_manager/"> Electic motors configurator  </a> <sup>* only in Russian </sup>',
+						},
+						{
+							key: '',
+							value: '<a href="https://www.elcomspb.ru/gearbox_selection/"> Gearbox configurators </a> <sup>* only in Russian </sup>',
+						},
+						{
+							key: '',
+							value: '<a href="https://www.elcomspb.ru/acb_selector/"> Air circuit breaker selection tool </a> <sup>* under dev. </sup>',
+						},
+						{
+							key: '',
+							value: '<a href="https://www.elcomspb.ru/"> Corporate website </a> <sup>* legacy ver; new ver. is migrated to Sveltekit atm. </sup>',
 						},
 					],
 				},
 			];
 
-			const list = document.getElementById('list');
-
-			data.forEach((item, index) => {
+			data.filter((item) => typeof item.value === 'string').forEach((item, index) => {
 				const listItem = document.createElement('li');
 
 				if (typeof item.value === 'string') {
 					listItem.innerHTML = `<strong> ${item.key} </strong> ${item.value}`;
-				} else if (typeof item.value === 'object' && Array.isArray(item.value)) {
-					const array = item.value;
-					listItem.innerHTML = `<strong> ${item.key} </strong>`;
+					listBio.appendChild(listItem);
+				}
+			});
 
-					if (typeof array[0] === 'string') {
-						const listIncluded = document.createElement('ul');
-						listIncluded.classList.add('list-included');
-						listIncluded.innerHTML = array.map((_item) => `<li> ${_item} </li>`).join('');
-						listItem.appendChild(listIncluded);
-						listItem.style.marginTop = '5%';
-					} else {
-						const listIncluded = document.createElement('ul');
-						listIncluded.classList.add('list-included');
-						listIncluded.innerHTML = array
-							.map((_item) => `<li> <a href="${_item.value}"> ${_item.key} </a> </li>`)
-							.join('');
-						listItem.appendChild(listIncluded);
-						listItem.style.marginTop = '5%';
-					}
+			data.filter((item) => typeof item.value === 'object' && Array.isArray(item.value)).forEach((item, index) => {
+				const listItem = document.createElement('li');
+				const array = item.value;
+				listItem.innerHTML = `<strong> ${item.key} </strong>`;
+
+				if (typeof array[0] === 'string') {
+					const listIncluded = document.createElement('ul');
+					listIncluded.classList.add('list-included');
+					listIncluded.innerHTML = array.map((_item) => `<li> ${_item} </li>`).join('');
+					listItem.appendChild(listIncluded);
+					listItem.style.marginTop = '5%';
+				} else {
+					const listIncluded = document.createElement('ul');
+					listIncluded.classList.add('list-included');
+					listIncluded.innerHTML = array.map((_item) => `<li> ${_item.value} </li>`).join('');
+					listItem.appendChild(listIncluded);
+					listItem.style.marginTop = '5%';
 				}
 
-				listItem.style.transform = `translateX(${index % 2 !== 0 ? '-100%' : '100%'})`;
-				list.appendChild(listItem);
+				listStack.appendChild(listItem);
 
-				window.addEventListener('scroll', () => {
-					if (document.documentElement.scrollTop >= listItem.getBoundingClientRect().top / 1.5) {
-						listItem.style.transform = 'translateX(0%)';
-					}
-				});
+				listItem.style.transform = `translateX(${index % 2 !== 0 ? '-300%' : '300%'})`;
 			});
+
+			const links = [
+				{ value: '<i class="fa-brands fa-telegram"></i>', href: 'https://t.me/maxganiev' },
+				{ value: '<i class="fa-brands fa-twitter"></i>', href: 'https://twitter.com/maxganiev' },
+			];
+
+			links.forEach((item) => divFaceBottom.insertAdjacentHTML('beforeend', `<a href=${item.href}> ${item.value} </a> &nbsp;`));
 		</script>
 	</body>
 </html>
