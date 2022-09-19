@@ -38,7 +38,7 @@
 				--fs-sm: 1.5vh;
 				--fs-vsm: 1vh;
 
-				--bg-clr-blue: #659dbd;
+				--bg-clr-main: #000;
 				--bg-clr-brown: #daad86;
 			}
 
@@ -55,7 +55,7 @@
 			main {
 				position: relative;
 				height: 150vh;
-				background-color: #fbeec1;
+				background-color: #fc4;
 			}
 
 			main .div-progress {
@@ -65,7 +65,7 @@
 				width: 0%;
 				height: 0.5rem;
 				z-index: 20000;
-				background-color: var(--bg-clr-blue);
+				background-color: var(--bg-clr-main);
 				transition: width 0.6s ease-out;
 			}
 
@@ -73,7 +73,7 @@
 				position: absolute;
 				width: 100%;
 				height: 75%;
-				top: 0;
+				top: -5vh;
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -83,7 +83,7 @@
 				position: fixed;
 				top: 93vh;
 				font-size: var(--fs-vlg);
-				color: var(--bg-clr-blue);
+				color: var(--bg-clr-main);
 				transition: top 0.6s ease-out;
 			}
 
@@ -97,7 +97,7 @@
 			}
 
 			main .div-wrapper-fixed .div-rotatable .div-face-front {
-				background: var(--bg-clr-blue);
+				background: var(--bg-clr-main);
 				color: #fff;
 				transform: translateZ(35vh);
 				width: 100%;
@@ -145,17 +145,14 @@
 				width: 90%;
 				margin: 30px 0 30px 30px;
 				list-style-type: none;
-				color: #000;
-				/* line-height: 1.6rem; */
+				color: #fff;
 				font-size: var(--fs-mid);
-				background: var(--bg-clr-brown);
 				padding: 10px;
-				border-radius: 2% 5%;
 			}
 
 			main .div-wrapper-fixed .div-rotatable .div-face-bottom {
-				background: var(--bg-clr-blue);
-				transform: rotateX(180deg) rotateY(0deg) translateZ(20vh);
+				background: var(--bg-clr-main);
+				transform: rotateX(180deg) rotateY(0deg) translateZ(35vh);
 				width: 100%;
 				height: 100%;
 				backface-visibility: hidden;
@@ -179,7 +176,7 @@
 
 			main .div-wrapper-fixed .div-rotatable .div-face-bottom a:hover {
 				text-decoration: none;
-				color: var(--bg-clr-blue);
+				opacity: 0.7;
 				text-shadow: #000 1px 0.5px 0.5px;
 				transition: all 0.2s ease-out;
 			}
@@ -189,16 +186,21 @@
 				width: 100%;
 				height: 100%;
 				backface-visibility: hidden;
-				background-color: var(--bg-clr-brown);
+				background-color: #fc4;
 				position: absolute;
 				display: flex;
 				justify-content: start;
 				align-items: center;
+				border: 1px #000 solid;
 			}
 
 			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li {
 				list-style-type: none;
 				transition: all 0.8s ease-out;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li a {
+				color: #000;
 			}
 
 			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack {
@@ -234,13 +236,14 @@
 
 			a {
 				font-size: var(--fs-mid);
-				color: #000;
+				color: #fff;
 				text-decoration: none;
 				font-style: italic;
 			}
 
 			a:hover {
 				text-decoration: underline;
+				color: inherit;
 			}
 
 			sup {
@@ -260,11 +263,11 @@
 							<ul class="list-bio" id="list-bio"></ul>
 						</div>
 					</div>
-					<div class="div-face-bottom" id="div-face-bottom">
-						<p>Hit me up if you have any project, or just want to talk</p>
-					</div>
 					<div class="div-face-middle">
 						<ul class="list-stack" id="list-stack"></ul>
+					</div>
+					<div class="div-face-bottom" id="div-face-bottom">
+						<p>Hit me up if you have any project, or just want to talk</p>
 					</div>
 				</div>
 				<i class="fa-solid fa-computer-mouse"></i>
@@ -306,15 +309,15 @@
 				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
 				let rotateK;
-				if (scrollPos > 0 && scrollPos <= height / 2) rotateK = 100;
+				if (scrollPos > 0 && scrollPos <= height / 2) rotateK = 90;
 				else if (scrollPos > height / 2) rotateK = 180;
 				else rotateK = 0;
 
 				divWrapperRotatable.style.transform = `rotate3d(1, 0, 0, ${rotateK}deg)`;
 
-				if (rotateK === 100) Array.from(listStack.children).forEach((child) => (child.style.transform = 'translateX(0%)'));
+				if (rotateK === 90) Array.from(listStack.children).forEach((child) => (child.style.transform = 'translateX(0%)'));
 
-				progress.style.width = rotateK === 0 ? '0%' : rotateK === 100 ? '50%' : '100%';
+				progress.style.width = rotateK === 0 ? '0%' : rotateK === 90 ? '50%' : '100%';
 			});
 
 			const UA =
@@ -341,7 +344,7 @@
 					key: 'Stack:',
 					value: [
 						'JavaScript 06',
-						'Svelte &#10084; , SvelteKit &#10084; &#10084;, React, Vue',
+						'Svelte &#10084; , SvelteKit &#10084; &#10084;, React, Vue, Astro &#10084;',
 						'Prisma ORM',
 						'PHP7, NodeJS (Express)',
 						'Laravel',
@@ -367,7 +370,7 @@
 						},
 						{
 							key: '',
-							value: '<a href="https://www.elcomspb.ru/adchr_manager/"> Electic motors configurator  </a> <sup>* only in Russian </sup>',
+							value: '<a href="https://www.elcomspb.ru/adchr/"> Electic motors configurator  </a> <sup>* only in Russian </sup>',
 						},
 						{
 							key: '',
@@ -380,6 +383,10 @@
 						{
 							key: '',
 							value: '<a href="https://www.elcomspb.ru/"> Corporate website </a> <sup>* legacy ver; new ver. is migrated to Sveltekit atm. </sup>',
+						},
+						{
+							key: '',
+							value: '<a href="https://beta.elcomspb.ru/tool/gearbox_selector"> Gears selector </sup>',
 						},
 					],
 				},
