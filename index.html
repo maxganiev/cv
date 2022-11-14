@@ -17,9 +17,10 @@
 				font-family: 'Montserrat';
 				font-style: normal;
 				font-weight: 400;
-				src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
-				unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
-					U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+				src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2)
+					format('woff2');
+				unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+					U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 			}
 
 			*,
@@ -34,12 +35,11 @@
 			:root {
 				--fs-vlg: 3.6vh;
 				--fs-lg: 2.6vh;
-				--fs-mid: 1.8vh;
+				--fs-mid: 2.1vh;
 				--fs-sm: 1.5vh;
 				--fs-vsm: 1vh;
 
 				--bg-clr-main: #000;
-				--bg-clr-brown: #daad86;
 			}
 
 			body {
@@ -55,7 +55,9 @@
 			main {
 				position: relative;
 				height: 150vh;
-				background-color: #fc4;
+				transition: all 0.7s ease-in-out;
+				background-color: #000;
+				/* background-color: #fc4; */
 			}
 
 			main .div-progress {
@@ -83,7 +85,7 @@
 				position: fixed;
 				top: 93vh;
 				font-size: var(--fs-vlg);
-				color: var(--bg-clr-main);
+				color: #fff;
 				transition: top 0.6s ease-out;
 			}
 
@@ -97,8 +99,8 @@
 			}
 
 			main .div-wrapper-fixed .div-rotatable .div-face-front {
-				background: var(--bg-clr-main);
-				color: #fff;
+				background: #fff;
+				color: #000;
 				transform: translateZ(35vh);
 				width: 100%;
 				height: 100%;
@@ -107,32 +109,32 @@
 				display: flex;
 				justify-content: space-evenly;
 				align-items: center;
-				flex-direction: column;
+				/* flex-direction: column; */
 			}
 
 			main .div-wrapper-fixed .div-rotatable .div-face-front .div-thumbnail {
 				height: 80%;
-				flex: 1;
-				transform: translateX(-300%);
+				flex: 0.4;
+				transform: translateX(-100vw);
 				transition: all 0.6s ease-out;
 				position: relative;
 				width: 100%;
 			}
 
 			main .div-wrapper-fixed .div-rotatable .div-face-front .div-thumbnail img {
-				height: 90%;
+				width: 100%;
 				object-fit: contain;
-				border-radius: 200px;
+				border-radius: 10px;
 				position: absolute;
-				top: 10%;
-				left: 50px;
+				top: 0;
+				left: 20px;
 				display: block;
 			}
 
 			main .div-wrapper-fixed .div-rotatable .div-face-front .div-list-bio {
 				height: 100%;
 				flex: 1;
-				transform: translateX(300%);
+				transform: translateX(100vw);
 				transition: all 0.6s ease-out;
 				display: flex;
 				justify-content: left;
@@ -145,14 +147,15 @@
 				width: 90%;
 				margin: 30px 0 30px 30px;
 				list-style-type: none;
-				color: #fff;
+				color: #000;
 				font-size: var(--fs-mid);
 				padding: 10px;
 			}
 
 			main .div-wrapper-fixed .div-rotatable .div-face-bottom {
-				background: var(--bg-clr-main);
-				transform: rotateX(180deg) rotateY(0deg) translateZ(35vh);
+				background: #000;
+				transform: rotateX(90deg) translateZ(35vh);
+				/* transform: rotateX(180deg) rotateY(0deg) translateZ(35vh); */
 				width: 100%;
 				height: 100%;
 				backface-visibility: hidden;
@@ -177,7 +180,7 @@
 			main .div-wrapper-fixed .div-rotatable .div-face-bottom a:hover {
 				text-decoration: none;
 				opacity: 0.7;
-				text-shadow: #000 1px 0.5px 0.5px;
+				text-shadow: #fff 1px 0.5px 0.5px;
 				transition: all 0.2s ease-out;
 			}
 
@@ -186,24 +189,30 @@
 				width: 100%;
 				height: 100%;
 				backface-visibility: hidden;
-				background-color: #fc4;
+				background-color: #000;
 				position: absolute;
 				display: flex;
 				justify-content: start;
 				align-items: center;
-				border: 1px #000 solid;
+				/* border: 1px #000 solid; */
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li {
+			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack {
+				color: #fff;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li,
+			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li {
 				list-style-type: none;
 				transition: all 0.8s ease-out;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li a {
+			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li a {
 				color: #000;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack {
+			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack,
+			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects {
 				width: 100%;
 				height: 100%;
 				display: flex;
@@ -216,27 +225,51 @@
 				justify-content: center;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li .list-included {
+			/* main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li .list-included,
+			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li .list-included {
 				margin-left: 5%;
-			}
+			} */
 
-			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li strong {
+			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li strong,
+			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li strong {
 				font-size: var(--fs-mid);
-				margin: 0 0 20px 5%;
+				margin: 0 0 20px 0;
 				display: block;
 				padding-left: 0.9rem;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li .list-included li {
+			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li strong {
+				color: #000;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li .list-included li,
+			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li .list-included li {
 				list-style-type: disclosure-closed;
 				text-align: left;
 				font-size: var(--fs-mid);
 				/* line-height: 1.5rem; */
 			}
 
+			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li .list-included li {
+				color: #000;
+			}
+
+			main .div-wrapper-fixed .div-rotatable .div-face-top {
+				/* transform: rotateX(90deg) translateZ(35vh); */
+				transform: rotateX(180deg) rotateY(0deg) translateZ(35vh);
+				width: 100%;
+				height: 100%;
+				backface-visibility: hidden;
+				background-color: #fff;
+				position: absolute;
+				display: flex;
+				justify-content: start;
+				align-items: center;
+			}
+
 			a {
 				font-size: var(--fs-mid);
-				color: #fff;
+				color: #000;
 				text-decoration: none;
 				font-style: italic;
 			}
@@ -248,6 +281,14 @@
 
 			sup {
 				font-size: var(--fs-sm);
+				color: #000;
+			}
+
+			@media (min-width: 150px) and (max-width: 750px) {
+				main .div-wrapper-fixed .div-rotatable {
+					height: 95vh;
+					aspect-ratio: 1.2/2.1;
+				}
 			}
 		</style>
 	</head>
@@ -257,6 +298,9 @@
 			<!-- <progress></progress> -->
 			<div class="div-wrapper-fixed">
 				<div class="div-rotatable" id="div-rotatable">
+					<div class="div-face-bottom" id="div-face-bottom">
+						<p>Hit me up if you have any project, or just want to talk</p>
+					</div>
 					<div class="div-face-front" id="div-face-front">
 						<div class="div-thumbnail"><img src="./pic.jpg" alt="a thumbnail" /></div>
 						<div class="div-list-bio">
@@ -266,8 +310,8 @@
 					<div class="div-face-middle">
 						<ul class="list-stack" id="list-stack"></ul>
 					</div>
-					<div class="div-face-bottom" id="div-face-bottom">
-						<p>Hit me up if you have any project, or just want to talk</p>
+					<div class="div-face-top">
+						<ul class="list-projects" id="list-projects"></ul>
 					</div>
 				</div>
 				<i class="fa-solid fa-computer-mouse"></i>
@@ -278,6 +322,7 @@
 			const divWrapperRotatable = document.getElementById('div-rotatable');
 			const listBio = document.getElementById('list-bio');
 			const listStack = document.getElementById('list-stack');
+			const listProjects = document.getElementById('list-projects');
 			const divFaceFront = document.getElementById('div-face-front');
 			const divFaceBottom = document.getElementById('div-face-bottom');
 			const main = document.getElementsByTagName('main')[0];
@@ -285,7 +330,9 @@
 			const mouseFontAwesome = document.querySelector('.fa-solid.fa-computer-mouse');
 
 			setTimeout(() => {
-				Array.from(divFaceFront.children).forEach((child) => (child.style.transform = 'translateX(0%)'));
+				Array.from(divFaceFront.children).forEach(
+					(child) => (child.style.transform = 'translateX(0%)')
+				);
 			}, 400);
 
 			const int = setInterval(() => {
@@ -304,24 +351,46 @@
 				}
 			}, 200);
 
+			let rotateK;
+
 			window.addEventListener('scroll', () => {
 				const scrollPos = document.documentElement.scrollTop;
 				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
-				let rotateK;
-				if (scrollPos > 0 && scrollPos <= height / 2) rotateK = 90;
-				else if (scrollPos > height / 2) rotateK = 180;
+				if (scrollPos > 0 && scrollPos <= height / 4) rotateK = 90;
+				else if (scrollPos > height / 4 && scrollPos < height / 2) rotateK = 180;
+				else if (scrollPos > height / 2) rotateK = 270;
 				else rotateK = 0;
 
 				divWrapperRotatable.style.transform = `rotate3d(1, 0, 0, ${rotateK}deg)`;
 
-				if (rotateK === 90) Array.from(listStack.children).forEach((child) => (child.style.transform = 'translateX(0%)'));
+				if (rotateK === 90)
+					Array.from(listStack.children).forEach(
+						(child) => (child.style.transform = 'translateX(0%)')
+					);
 
-				progress.style.width = rotateK === 0 ? '0%' : rotateK === 90 ? '50%' : '100%';
+				if (rotateK === 180)
+					Array.from(listProjects.children).forEach(
+						(child) => (child.style.transform = 'translateX(0%)')
+					);
+
+				progress.style.width = (() => {
+					if (rotateK === 0) return '0%';
+					if (rotateK === 90) return '25%';
+					if (rotateK === 180) return '75%';
+					if (rotateK === 270) return '100%';
+				})();
+
+				main.style.backgroundColor = (() => {
+					if (rotateK === 0 || rotateK === 180) return '#000';
+					if (rotateK === 90 || rotateK === 270) return '#fff';
+				})();
 			});
 
-			const UA =
-				'<div style="width:40px; height: 10px; display: inline-block"> <div style="background-color: blue; width: 100%; height: 100%"> </div> <div style="background-color: yellow; width: 100%; height: 100%"> </div> </div>';
+			window.addEventListener('keyup', (e) => {
+				if (e.key === 'ArrowDown') rotateK = rotateK < 270 ? (rotateK += 90) : 270;
+				if (e.key === 'Arrowup') rotateK = rotateK > 0 ? (rotateK -= 90) : 0;
+			});
 
 			const data = [
 				{ key: 'Full Name:', value: 'Ganiev Maxim' },
@@ -338,18 +407,17 @@
 				},
 				{
 					key: '',
-					value: `I am mostly specialized in Frontend, but also can build fullstack apps. <br/> Inspired by <a href="https://www.traversymedia.com/"> Brad Traversy </a> and <a href="https://twitter.com/Rich_Harris?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"> Rich Harris </a>, like to use <a href="https://svelte.dev/"> Svelte </a> <br/>  Love snowboarding, big tennis, and my wife. Stand with ${UA}`,
+					value: `I am mostly specialized in Frontend, but also can build fullstack apps. <br/> Inspired by <a href="https://www.traversymedia.com/"> Brad Traversy </a> and <a href="https://twitter.com/Rich_Harris?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"> Rich Harris </a>, like to use <a href="https://svelte.dev/"> Svelte </a> <br/>  Love snowboarding, big tennis, and my wife.`,
 				},
 				{
 					key: 'Stack:',
 					value: [
-						'JavaScript 06',
-						'Svelte &#10084; , SvelteKit &#10084; &#10084;, React, Vue, Astro &#10084;',
+						'JavaScript (ECMA6)',
+						'Svelte & SvelteKit, React, Vue & Nuxt, Astro',
 						'Prisma ORM',
-						'PHP7, NodeJS (Express)',
-						'Laravel',
-						'CSS (SASS), Bootstrap',
-						'Compilers (Webpack, Snowpack, Vite &#10084;)',
+						'PHP7 & Laravel (very basic usage), NodeJS (Express)',
+						'CSS & SASS, Bootstrap',
+						'Compilers (Webpack, Snowpack, Vite)',
 						'MySQL (quiries, configuration)',
 						'Git',
 						'can work with platforms like Netlify, Heroku',
@@ -386,7 +454,15 @@
 						},
 						{
 							key: '',
-							value: '<a href="https://beta.elcomspb.ru/tool/gearbox_selector"> Gears selector </sup>',
+							value: '<a href="https://beta.elcomspb.ru/tool/gearbox_selector"> Gears selector </a>',
+						},
+						{
+							key: '',
+							value: '<a href="https://beta.elcomspb.ru/tool/customs_request"> Docx order form generator </a>',
+						},
+						{
+							key: '',
+							value: '<p> Also built various services like PDF generators, SMS and email subscribtion admin tools, file uploaders, etc. </p>',
 						},
 					],
 				},
@@ -401,11 +477,19 @@
 				}
 			});
 
-			data.filter((item) => typeof item.value === 'object' && Array.isArray(item.value)).forEach((item, index) => {
-				const listItem = document.createElement('li');
-				const array = item.value;
-				listItem.innerHTML = `<strong> ${item.key} </strong>`;
+			data.filter((item) => typeof item.value === 'object' && Array.isArray(item.value)).forEach(
+				(item, index) => {
+					const listItem = document.createElement('li');
+					const array = item.value;
+					listItem.innerHTML = `<strong> ${item.key} </strong>`;
 
+					if (item.key === 'Stack:') appendList(listStack, array, listItem, index);
+					if (item.key.includes('Links to couple of my projects'))
+						appendList(listProjects, array, listItem, index);
+				}
+			);
+
+			function appendList(list, array, listItem, index) {
 				if (typeof array[0] === 'string') {
 					const listIncluded = document.createElement('ul');
 					listIncluded.classList.add('list-included');
@@ -420,17 +504,18 @@
 					listItem.style.marginTop = '5%';
 				}
 
-				listStack.appendChild(listItem);
-
-				listItem.style.transform = `translateX(${index % 2 !== 0 ? '-300%' : '300%'})`;
-			});
+				list.appendChild(listItem);
+				listItem.style.transform = `translateX(${index % 2 !== 0 ? '-300vw' : '300vw'})`;
+			}
 
 			const links = [
 				{ value: '<i class="fa-brands fa-telegram"></i>', href: 'https://t.me/maxganiev' },
 				{ value: '<i class="fa-brands fa-twitter"></i>', href: 'https://twitter.com/maxganiev' },
 			];
 
-			links.forEach((item) => divFaceBottom.insertAdjacentHTML('beforeend', `<a href=${item.href}> ${item.value} </a> &nbsp;`));
+			links.forEach((item) =>
+				divFaceBottom.insertAdjacentHTML('beforeend', `<a href=${item.href}> ${item.value} </a> &nbsp;`)
+			);
 		</script>
 	</body>
 </html>
