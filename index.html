@@ -11,6 +11,7 @@
 			crossorigin="anonymous"
 		/>
 		<script src="https://kit.fontawesome.com/dd7cb428b6.js" crossorigin="anonymous"></script>
+		<link rel="icon" type="image/png" href="favicon.png" sizes="16x16" />
 		<title>Ganiev Maxim | webdev</title>
 		<style>
 			@font-face {
@@ -318,6 +319,7 @@
 
 				main .div-wrapper-fixed-desktop .div-rotatable {
 					width: 90%;
+					margin-top: -100px;
 				}
 
 				main .div-wrapper-fixed-desktop .div-rotatable .div-face-front .div-list-bio .list-bio {
@@ -374,6 +376,10 @@
 			const carret = {
 				down: document.getElementById('carret-down'),
 				up: document.getElementById('carret-up'),
+				updateVisibility: function () {
+					this.up.style.visibility = rotateK === 0 || rotateK == undefined ? 'hidden' : 'visible';
+					this.down.style.visibility = rotateK === 270 ? 'hidden' : 'visible';
+				},
 			};
 			const computerMouse = document.getElementById('computer-mouse');
 
@@ -402,7 +408,10 @@
 						this.is || document.documentElement.scrollTop > 0 ? 'hidden' : 'visible';
 				},
 			};
-			window.addEventListener('load', () => mobileScreen.checkIfIs());
+			window.addEventListener('load', () => {
+				mobileScreen.checkIfIs();
+				carret.updateVisibility();
+			});
 
 			window.addEventListener('resize', () => mobileScreen.checkIfIs());
 
@@ -428,6 +437,8 @@
 						else if (rK === 180) rotateK = 90;
 						else if (rK === 90) rotateK = 0;
 					}
+
+					carret.updateVisibility();
 				}
 
 				divWrapperRotatable.style.transform = `rotate3d(1, 0, 0, ${rotateK}deg)`;
