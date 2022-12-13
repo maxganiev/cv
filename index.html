@@ -35,7 +35,7 @@
 			:root {
 				--fs-vlg: 3.6vh;
 				--fs-lg: 2.6vh;
-				--fs-mid: 2.1vh;
+				--fs-mid: 1.9vh;
 				--fs-sm: 1.5vh;
 				--fs-vsm: 1vh;
 
@@ -50,6 +50,24 @@
 			body::-webkit-scrollbar {
 				display: none;
 				background-color: #000;
+			}
+
+			.fa-solid.fa-caret-down,
+			.fa-solid.fa-caret-up {
+				display: block;
+			}
+
+			.fa-solid.fa-computer-mouse {
+				bottom: 5vh;
+				font-size: 6vh;
+				color: white;
+				position: fixed;
+				animation-name: animate-mouse;
+				animation-duration: 0.2s;
+				animation-iteration-count: infinite;
+				animation-fill-mode: backwards;
+				animation-direction: alternate-reverse;
+				animation-timing-function: ease-out;
 			}
 
 			main {
@@ -71,7 +89,11 @@
 				transition: width 0.6s ease-out;
 			}
 
-			main .div-wrapper-fixed {
+			.div-wrapper-fixed-mobile {
+				display: none;
+			}
+
+			main .div-wrapper-fixed-desktop {
 				position: absolute;
 				width: 100%;
 				height: 75%;
@@ -81,15 +103,7 @@
 				align-items: center;
 			}
 
-			main .div-wrapper-fixed .fa-solid.fa-computer-mouse {
-				position: fixed;
-				top: 93vh;
-				font-size: var(--fs-vlg);
-				color: #fff;
-				transition: top 0.6s ease-out;
-			}
-
-			main .div-wrapper-fixed .div-rotatable {
+			main .div-wrapper-fixed-desktop .div-rotatable {
 				height: 70vh;
 				aspect-ratio: 1/1;
 				transform-style: preserve-3d;
@@ -98,7 +112,7 @@
 				position: fixed;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-front {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-front {
 				background: #000;
 				color: #fff;
 				transform: translateZ(35vh);
@@ -109,31 +123,31 @@
 				display: flex;
 				justify-content: space-evenly;
 				align-items: center;
-				/* flex-direction: column; */
+				flex-direction: column;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-front .div-thumbnail {
-				height: 80%;
-				flex: 0.4;
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-front .div-thumbnail {
+				/* height: 80%; */
+				flex: 0.5;
 				transform: translateX(-100vw);
 				transition: all 0.6s ease-out;
 				position: relative;
 				width: 100%;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-front .div-thumbnail img {
-				width: 100%;
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-front .div-thumbnail img {
+				height: 100%;
 				object-fit: contain;
 				border-radius: 10px;
 				position: absolute;
 				top: 0;
-				left: 20px;
+				left: 8px;
 				display: block;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-front .div-list-bio {
-				height: 100%;
-				flex: 1;
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-front .div-list-bio {
+				/* height: 100%; */
+				flex: 0.8;
 				transform: translateX(100vw);
 				transition: all 0.6s ease-out;
 				display: flex;
@@ -141,18 +155,18 @@
 				align-items: center;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-front .div-list-bio .list-bio {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-front .div-list-bio .list-bio {
 				display: flex;
 				flex-direction: column;
 				width: 90%;
-				margin: 30px 0 30px 30px;
+				/* margin: 30px 0 30px 30px; */
 				list-style-type: none;
 				color: #fff;
 				font-size: var(--fs-mid);
 				padding: 10px;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-bottom {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-bottom {
 				background: #000;
 				transform: rotateX(90deg) translateZ(35vh);
 				/* transform: rotateX(180deg) rotateY(0deg) translateZ(35vh); */
@@ -163,7 +177,7 @@
 				text-align: center;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-bottom p {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-bottom p {
 				font-size: var(--fs-lg);
 				margin: 40% 0 0 calc(18% - 2.6vh);
 				width: 70%;
@@ -172,19 +186,19 @@
 				padding-bottom: 20px;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-bottom a {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-bottom a {
 				font-size: var(--fs-vlg);
 				color: #fff;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-bottom a:hover {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-bottom a:hover {
 				text-decoration: none;
 				opacity: 0.7;
 				text-shadow: #fff 1px 0.5px 0.5px;
 				transition: all 0.2s ease-out;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-middle {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-middle {
 				transform: rotateX(-90deg) translateZ(35vh);
 				width: 100%;
 				height: 100%;
@@ -197,22 +211,22 @@
 				/* border: 1px #000 solid; */
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-middle .list-stack {
 				color: #fff;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li,
-			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-middle .list-stack li,
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-top .list-projects li {
 				list-style-type: none;
 				transition: all 0.8s ease-out;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li a {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-top .list-projects li a {
 				color: #fff;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack,
-			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-middle .list-stack,
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-top .list-projects {
 				width: 100%;
 				height: 100%;
 				display: flex;
@@ -225,36 +239,36 @@
 				justify-content: center;
 			}
 
-			/* main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li .list-included,
-			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li .list-included {
+			/* main .div-wrapper-fixed-desktop .div-rotatable .div-face-middle .list-stack li .list-included,
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-top .list-projects li .list-included {
 				margin-left: 5%;
 			} */
 
-			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li strong,
-			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li strong {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-middle .list-stack li strong,
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-top .list-projects li strong {
 				font-size: var(--fs-mid);
 				margin: 0 0 20px 0;
 				display: block;
 				padding-left: 0.9rem;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li strong {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-top .list-projects li strong {
 				color: #fff;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-middle .list-stack li .list-included li,
-			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li .list-included li {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-middle .list-stack li .list-included li,
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-top .list-projects li .list-included li {
 				list-style-type: disclosure-closed;
 				text-align: left;
 				font-size: var(--fs-mid);
 				/* line-height: 1.5rem; */
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-top .list-projects li .list-included li {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-top .list-projects li .list-included li {
 				color: #fff;
 			}
 
-			main .div-wrapper-fixed .div-rotatable .div-face-top {
+			main .div-wrapper-fixed-desktop .div-rotatable .div-face-top {
 				/* transform: rotateX(90deg) translateZ(35vh); */
 				transform: rotateX(180deg) rotateY(0deg) translateZ(35vh);
 				width: 100%;
@@ -284,10 +298,39 @@
 				color: #000;
 			}
 
-			@media (min-width: 150px) and (max-width: 750px) {
-				main .div-wrapper-fixed .div-rotatable {
-					height: 95vh;
-					aspect-ratio: 1.2/2.1;
+			@media (min-width: 150px) and (max-width: 600px) {
+				.fa-solid.fa-computer-mouse {
+					display: none;
+				}
+
+				.fa-solid.fa-caret-down,
+				.fa-solid.fa-caret-up {
+					color: white;
+					font-size: 8vh;
+					position: fixed;
+					z-index: 1000;
+					bottom: 2vh;
+				}
+
+				.fa-solid.fa-caret-up {
+					top: 2vh;
+				}
+
+				main .div-wrapper-fixed-desktop .div-rotatable {
+					width: 90%;
+				}
+
+				main .div-wrapper-fixed-desktop .div-rotatable .div-face-front .div-list-bio .list-bio {
+					font-size: 1.75vh;
+				}
+			}
+
+			@keyframes animate-mouse {
+				from {
+					transform: translateY(10%);
+				}
+				to {
+					transform: translateY(0%);
 				}
 			}
 		</style>
@@ -295,8 +338,8 @@
 	<body>
 		<main>
 			<div class="div-progress" id="div-progress"></div>
-			<!-- <progress></progress> -->
-			<div class="div-wrapper-fixed">
+			<div class="div-wrapper-fixed-desktop">
+				<i class="fa-solid fa-caret-up" id="carret-up"></i>
 				<div class="div-rotatable" id="div-rotatable">
 					<div class="div-face-bottom" id="div-face-bottom">
 						<p>Hit me up if you have any project, or just want to talk</p>
@@ -314,7 +357,8 @@
 						<ul class="list-projects" id="list-projects"></ul>
 					</div>
 				</div>
-				<i class="fa-solid fa-computer-mouse"></i>
+				<i class="fa-solid fa-caret-down" id="carret-down"></i>
+				<i class="fa-solid fa-computer-mouse" id="computer-mouse"></i>
 			</div>
 		</main>
 
@@ -327,7 +371,16 @@
 			const divFaceBottom = document.getElementById('div-face-bottom');
 			const main = document.getElementsByTagName('main')[0];
 			const progress = document.getElementById('div-progress');
-			const mouseFontAwesome = document.querySelector('.fa-solid.fa-computer-mouse');
+			const carret = {
+				down: document.getElementById('carret-down'),
+				up: document.getElementById('carret-up'),
+			};
+			const computerMouse = document.getElementById('computer-mouse');
+
+			carret.down.onclick = carret.up.onclick = (e) => {
+				mobileScreen.checkIfIs();
+				rotate(e, rotateK);
+			};
 
 			setTimeout(() => {
 				Array.from(divFaceFront.children).forEach(
@@ -340,25 +393,21 @@
 			// 	child.style.boxShadow = '3px 15px 115px #fff';
 			// });
 
-			const int = setInterval(() => {
-				if (document.documentElement.scrollTop !== 0) {
-					mouseFontAwesome.style.display = 'none';
-					clearInterval(int);
-				} else {
-					if (mouseFontAwesome.style.top === '93vh')
-						setTimeout(() => {
-							mouseFontAwesome.style.top = '90vh';
-						}, 50);
-					else
-						setTimeout(() => {
-							mouseFontAwesome.style.top = '93vh';
-						}, 50);
-				}
-			}, 200);
+			const mobileScreen = {
+				is: false,
+				checkIfIs: function () {
+					this.is = document.body.clientWidth <= 600;
 
-			let rotateK;
+					computerMouse.style.visibility =
+						this.is || document.documentElement.scrollTop > 0 ? 'hidden' : 'visible';
+				},
+			};
+			window.addEventListener('load', () => mobileScreen.checkIfIs());
 
-			window.addEventListener('scroll', () => {
+			window.addEventListener('resize', () => mobileScreen.checkIfIs());
+
+			let rotateK = 0;
+			function rotate(e, rK) {
 				const scrollPos = document.documentElement.scrollTop;
 				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
@@ -366,6 +415,20 @@
 				else if (scrollPos > height / 4 && scrollPos < height / 2) rotateK = 180;
 				else if (scrollPos > height / 2) rotateK = 270;
 				else rotateK = 0;
+
+				if (e.target != undefined) {
+					if (e.target.id === 'carret-down') {
+						if (rK === 0) rotateK = 90;
+						else if (rK === 90) rotateK = 180;
+						else if (rK === 180) rotateK = 270;
+					}
+
+					if (e.target.id === 'carret-up') {
+						if (rK === 270) rotateK = 180;
+						else if (rK === 180) rotateK = 90;
+						else if (rK === 90) rotateK = 0;
+					}
+				}
 
 				divWrapperRotatable.style.transform = `rotate3d(1, 0, 0, ${rotateK}deg)`;
 
@@ -385,11 +448,13 @@
 					if (rotateK === 180) return '75%';
 					if (rotateK === 270) return '100%';
 				})();
+			}
 
-				// main.style.backgroundColor = (() => {
-				// 	if (rotateK === 0 || rotateK === 180) return '#000';
-				// 	if (rotateK === 90 || rotateK === 270) return '#fff';
-				// })();
+			window.addEventListener('scroll', (e) => {
+				mobileScreen.checkIfIs();
+				if (mobileScreen.is) return;
+
+				rotate(e.target);
 			});
 
 			window.addEventListener('keyup', (e) => {
@@ -397,11 +462,18 @@
 				if (e.key === 'Arrowup') rotateK = rotateK > 0 ? (rotateK -= 90) : 0;
 			});
 
+			const firstWorkingDay = new Date('January 10, 2022 09:00');
+			const today = new Date();
+			const experience = today.getTime() - firstWorkingDay.getTime();
+			//ms in day:
+			const day = 1000 * 60 * 60 * 24;
+			const myExperience = ((experience / day / 365) * 1.5).toFixed(1);
+
 			const data = [
 				{ key: 'Full Name:', value: 'Ganiev Maxim' },
 				{ key: 'Birthday:', value: '19.08.1991' },
 				{ key: 'Current location:', value: 'Saint-Petersburg, RF' },
-				{ key: 'Commercial experience in IT industry:', value: '1.2 year' },
+				{ key: 'Commercial experience in IT industry:', value: myExperience + ' years' },
 				{
 					key: 'Current occupation:',
 					value: 'Full stack web developer in <a href="https://www.elcomspb.ru/"> Elcom Ltd.</a>',
@@ -423,11 +495,11 @@
 						'PHP7 & Laravel (very basic usage), NodeJS (Express)',
 						'CSS & SASS, Bootstrap',
 						'Compilers (Webpack, Snowpack, Vite)',
-						'MySQL (quiries, configuration)',
-						'Git',
-						'can work with platforms like Netlify, Heroku',
-						'able to configure NGINX server',
-						'work on Windows 10 and Ubuntu, also can work with OSX',
+						'MySQL (quiries, configuration), MongoDB',
+						'Github, Bitbucket',
+						'Working with platforms like Netlify, Heroku',
+						'Server configuration (Apache, Nginx)',
+						'OSX, Windows, Ubuntu',
 					],
 				},
 				{
@@ -439,7 +511,7 @@
 						},
 						{
 							key: '',
-							value: '<a href="https://lcl-freight-calc.herokuapp.com/"> Logistic air freight charges tool </a> <sup>* only in Russian </sup>',
+							value: '<a href="https://www.elcomspb.ru/index.php?route=tool/freightcalc"> Logistic air freight charges tool </a> <sup>* only in Russian </sup>',
 						},
 						{
 							key: '',
@@ -460,6 +532,14 @@
 						{
 							key: '',
 							value: '<a href="https://beta.elcomspb.ru/tool/gearbox_selector"> Gears selector </a>',
+						},
+						{
+							key: '',
+							value: '<a href="https://beta.elcomspb.ru/tool/vcb_selector"> VCB selector </a> <sup>* under dev. </sup>',
+						},
+						{
+							key: '',
+							value: '<a href="https://beta.elcomspb.ru/tool/pump_conf"> Pump configurator </a> <sup>* under dev. </sup>',
 						},
 						{
 							key: '',
