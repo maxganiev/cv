@@ -404,6 +404,34 @@
 			// 	child.style.boxShadow = '3px 15px 115px #fff';
 			// });
 
+			const pixelsScrolledTop = {
+				startValue: 0,
+				endValue: 0,
+				scrollingDown: false,
+				setScrollingDown() {
+					this.scrollingDown = this.startValue > this.endValue;
+				},
+				setValue(scrolledPixelsValue, target) {
+					this.startValue = scrolledPixelsValue;
+
+					setTimeout(() => {
+						this.endValue = scrolledPixelsValue;
+						windowBeingScrolled.checkIfIs();
+						this.setScrollingDown();
+						console.log(this.scrollingDown);
+						// rotate(target, rotateK);
+					}, 250);
+				},
+			};
+
+			const windowBeingScrolled = {
+				is: false,
+				checkIfIs() {
+					this.is = pixelsScrolledTop.startValue === pixelsScrolledTop.endValue;
+					//console.log(this.is);
+				},
+			};
+
 			const mobileScreen = {
 				is: false,
 				checkIfIs: function () {
@@ -425,7 +453,7 @@
 
 			let rotateK = 0;
 			function rotate(e, rK) {
-				const scrollPos = document.documentElement.scrollTop;
+				const scrollPos = document.documentElement.scrollTop / 2;
 				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
 				if (scrollPos > 0 && scrollPos <= height / 4) rotateK = 90;
@@ -433,21 +461,19 @@
 				else if (scrollPos > height / 2) rotateK = 270;
 				else rotateK = 0;
 
-				if (e.target != undefined) {
-					if (e.target.id === 'carret-down') {
-						if (rK === 0) rotateK = 90;
-						else if (rK === 90) rotateK = 180;
-						else if (rK === 180) rotateK = 270;
-					}
-
-					if (e.target.id === 'carret-up') {
-						if (rK === 270) rotateK = 180;
-						else if (rK === 180) rotateK = 90;
-						else if (rK === 90) rotateK = 0;
-					}
-
-					carret.updateVisibility();
+				if (e.target && e.target.id === 'carret-down') {
+					if (rK === 0) rotateK = 90;
+					else if (rK === 90) rotateK = 180;
+					else if (rK === 180) rotateK = 270;
 				}
+
+				if (e.target && e.target.id === 'carret-up') {
+					if (rK === 270) rotateK = 180;
+					else if (rK === 180) rotateK = 90;
+					else if (rK === 90) rotateK = 0;
+				}
+
+				carret.updateVisibility();
 
 				divWrapperRotatable.style.transform = `rotate3d(1, 0, 0, ${rotateK}deg)`;
 
@@ -473,6 +499,7 @@
 				mobileScreen.checkIfIs();
 				if (mobileScreen.is) return;
 
+				//pixelsScrolledTop.setValue(document.documentElement.scrollTop);
 				rotate(e.target);
 			});
 
