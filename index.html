@@ -377,6 +377,11 @@
 				down: document.getElementById('carret-down'),
 				up: document.getElementById('carret-up'),
 				updateVisibility: function () {
+					if (!mobileScreen.is) {
+						this.up.style.visibility = this.down.style.visibility = 'hidden';
+						return;
+					}
+
 					this.up.style.visibility = rotateK === 0 || rotateK == undefined ? 'hidden' : 'visible';
 					this.down.style.visibility = rotateK === 270 ? 'hidden' : 'visible';
 				},
@@ -413,7 +418,10 @@
 				carret.updateVisibility();
 			});
 
-			window.addEventListener('resize', () => mobileScreen.checkIfIs());
+			window.addEventListener('resize', () => {
+				mobileScreen.checkIfIs();
+				carret.updateVisibility();
+			});
 
 			let rotateK = 0;
 			function rotate(e, rK) {
@@ -484,7 +492,7 @@
 				{ key: 'Full Name:', value: 'Ganiev Maxim' },
 				{ key: 'Birthday:', value: '19.08.1991' },
 				{ key: 'Current location:', value: 'Saint-Petersburg, RF' },
-				{ key: 'Commercial experience in IT industry:', value: myExperience + ' years' },
+				//{ key: 'Commercial experience in IT industry:', value: myExperience + ' years' },
 				{
 					key: 'Current occupation:',
 					value: 'Full stack web developer in <a href="https://www.elcomspb.ru/"> Elcom Ltd.</a>',
