@@ -64,6 +64,11 @@
 				background-color: #000;
 			}
 
+			.border-style {
+				border: 0.5px solid rgb(255, 255, 255);
+				border-radius: 20px;
+			}
+
 			.fa-solid.fa-caret-down,
 			.fa-solid.fa-caret-up {
 				display: block;
@@ -152,7 +157,7 @@
 				object-fit: contain;
 				border-radius: 10px;
 				position: absolute;
-				top: 0;
+				top: 5.5px;
 				left: 8px;
 				display: block;
 			}
@@ -307,7 +312,7 @@
 
 			sup {
 				font-size: var(--fs-sm);
-				color: #000;
+				color: #fff;
 			}
 
 			@media (min-width: 150px) and (max-width: 600px) {
@@ -353,20 +358,20 @@
 			<div class="div-progress" id="div-progress"></div>
 			<div class="div-wrapper-fixed-desktop">
 				<i class="fa-solid fa-caret-up" id="carret-up"></i>
-				<div class="div-rotatable" id="div-rotatable">
-					<div class="div-face-bottom" id="div-face-bottom">
+				<div class="div-rotatable border-style" id="div-rotatable">
+					<div class="div-face-bottom border-style" id="div-face-bottom">
 						<p>Hit me up if you have any project, or just want to talk</p>
 					</div>
-					<div class="div-face-front" id="div-face-front">
+					<div class="div-face-front border-style" id="div-face-front">
 						<div class="div-thumbnail"><img src="./pic.jpg" alt="a thumbnail" /></div>
 						<div class="div-list-bio">
 							<ul class="list-bio" id="list-bio"></ul>
 						</div>
 					</div>
-					<div class="div-face-middle">
+					<div class="div-face-middle border-style">
 						<ul class="list-stack" id="list-stack"></ul>
 					</div>
-					<div class="div-face-top">
+					<div class="div-face-top border-style">
 						<ul class="list-projects" id="list-projects"></ul>
 					</div>
 				</div>
@@ -587,7 +592,7 @@
 						},
 						{
 							key: '',
-							value: '<a href="https://www.elcomspb.ru/"> Corporate website </a> <sup>* legacy ver; new ver. is migrated to Sveltekit atm. </sup>',
+							value: '<a href="https://www.elcomspb.ru/"> Corporate website </a>',
 						},
 						{
 							key: '',
