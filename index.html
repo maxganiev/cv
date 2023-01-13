@@ -448,8 +448,9 @@
 				checkIfIs: function () {
 					this.is = document.body.clientWidth <= 600;
 
-					computerMouse.style.visibility =
-						this.is || document.documentElement.scrollTop > 0 ? 'hidden' : 'visible';
+					if (computerMouse)
+						computerMouse.style.visibility =
+							this.is || document.documentElement.scrollTop > 0 ? 'hidden' : 'visible';
 				},
 			};
 			window.addEventListener('load', () => {
@@ -467,8 +468,10 @@
 				const scrollPos = document.documentElement.scrollTop / 2;
 				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
-				if (scrollPos > 0 && scrollPos <= height / 4) rotateK = 90;
-				else if (scrollPos > height / 4 && scrollPos < height / 2) rotateK = 180;
+				if (scrollPos > 0 && scrollPos <= height / 4) {
+					rotateK = 90;
+					computerMouse.remove();
+				} else if (scrollPos > height / 4 && scrollPos < height / 2) rotateK = 180;
 				else if (scrollPos > height / 2) rotateK = 270;
 				else rotateK = 0;
 
