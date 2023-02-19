@@ -359,7 +359,7 @@
 		<main>
 			<div class="div-progress" id="div-progress"></div>
 			<div class="div-wrapper-fixed-desktop">
-				<i class="fa-solid fa-caret-up" id="carret-up" style="display: none"></i>
+				<i class="fa-solid fa-caret-up" id="carret-up"></i>
 				<div class="div-rotatable border-style" id="div-rotatable">
 					<div class="div-face-bottom border-style" id="div-face-bottom">
 						<p>Hit me up if you have any project, or just want to talk</p>
@@ -377,7 +377,7 @@
 						<ul class="list-projects" id="list-projects"></ul>
 					</div>
 				</div>
-				<i class="fa-solid fa-caret-down" id="carret-down" style="display: none"></i>
+				<i class="fa-solid fa-caret-down" id="carret-down"></i>
 				<i class="fa-solid fa-computer-mouse" id="computer-mouse"></i>
 			</div>
 		</main>
@@ -474,9 +474,7 @@
 						});
 					};
 
-					if (window.matchMedia('(pointer: coarse)').matches)
-						window.addEventListener('touchmove', listener, { passive: false });
-					else window.addEventListener('wheel', listener, { passive: false });
+					window.addEventListener('wheel', listener, { passive: false });
 				},
 			};
 
@@ -500,12 +498,12 @@
 			};
 			window.addEventListener('load', () => {
 				mobileScreen.checkIfIs();
-				//carret.updateVisibility();
+				carret.updateVisibility();
 			});
 
 			window.addEventListener('resize', () => {
 				mobileScreen.checkIfIs();
-				//carret.updateVisibility();
+				carret.updateVisibility();
 			});
 
 			let rotateK = 0;
@@ -519,39 +517,27 @@
 				const scrollPos = document.documentElement.scrollTop / 1.5;
 				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
-				// if (scrollPos > 0 && scrollPos <= height / 4) {
-				// 	rotateK = 90;
-				// 	computerMouse.remove();
-				// } else if (scrollPos > height / 4 && scrollPos < height / 2) rotateK = 180;
-				// else if (scrollPos > height / 2) rotateK = 270;
-				// else rotateK = 0;
-
 				if (scrollParams.status === 'started') {
-					if (scrollParams.direction === 'up') {
-						if (rK === 270) rotateK = 180;
-						else if (rK === 180) rotateK = 90;
-						else if (rK === 90) rotateK = 0;
-					}
-					if (scrollParams.direction === 'down') {
-						if (rK === 0) rotateK = 90;
-						else if (rK === 90) rotateK = 180;
-						else if (rK === 180) rotateK = 270;
-					}
+					if (scrollParams.direction === 'up') up();
+					if (scrollParams.direction === 'down') down();
 				}
 
-				if (e && e.target && e.target.id === 'carret-down') {
-					if (rK === 0) rotateK = 90;
-					else if (rK === 90) rotateK = 180;
-					else if (rK === 180) rotateK = 270;
-				}
+				if (e && e.target && e.target.id === 'carret-down') down();
+				if (e && e.target && e.target.id === 'carret-up') up();
 
-				if (e && e.target && e.target.id === 'carret-up') {
+				function up() {
 					if (rK === 270) rotateK = 180;
 					else if (rK === 180) rotateK = 90;
 					else if (rK === 90) rotateK = 0;
 				}
 
-				//carret.updateVisibility();
+				function down() {
+					if (rK === 0) rotateK = 90;
+					else if (rK === 90) rotateK = 180;
+					else if (rK === 180) rotateK = 270;
+				}
+
+				carret.updateVisibility();
 
 				divWrapperRotatable.style.transform = `rotate3d(1, 0, 0, ${rotateK}deg)`;
 
@@ -572,13 +558,6 @@
 					if (rotateK === 270) return '100%';
 				})();
 			}
-
-			// window.addEventListener('scroll', (e) => {
-			// 	mobileScreen.checkIfIs();
-			// 	if (mobileScreen.is) return;
-
-			// 	rotate(e.target);
-			// });
 
 			window.addEventListener('keyup', (e) => {
 				if (e.key === 'ArrowDown') rotateK = rotateK < 270 ? (rotateK += 90) : 270;
