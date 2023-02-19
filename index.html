@@ -359,7 +359,7 @@
 		<main>
 			<div class="div-progress" id="div-progress"></div>
 			<div class="div-wrapper-fixed-desktop">
-				<i class="fa-solid fa-caret-up" id="carret-up"></i>
+				<i class="fa-solid fa-caret-up" id="carret-up" style="display: none"></i>
 				<div class="div-rotatable border-style" id="div-rotatable">
 					<div class="div-face-bottom border-style" id="div-face-bottom">
 						<p>Hit me up if you have any project, or just want to talk</p>
@@ -377,7 +377,7 @@
 						<ul class="list-projects" id="list-projects"></ul>
 					</div>
 				</div>
-				<i class="fa-solid fa-caret-down" id="carret-down"></i>
+				<i class="fa-solid fa-caret-down" id="carret-down" style="display: none"></i>
 				<i class="fa-solid fa-computer-mouse" id="computer-mouse"></i>
 			</div>
 		</main>
@@ -411,44 +411,80 @@
 				rotate(e, rotateK);
 			};
 
+			const scrollParams = {
+				startValue: 0,
+				endValue: 0,
+				direction: 'down',
+				status: 'stopped',
+				cycleEnded: true,
+				currentPosY: 0,
+				timestamps: {
+					now: -1,
+					then: -1,
+					updateNow() {
+						this.now = Date.now();
+					},
+					updateThen() {
+						this.then = Date.now();
+					},
+				},
+
+				setCurrentPosY(/**@type {number}*/ currentPosY) {
+					this.currentPosY = currentPosY;
+				},
+
+				async setStatus() {
+					if (this.startValue === this.endValue) {
+						this.status = 'stopped';
+						this.cycleEnded = true;
+					} else if (this.startValue !== this.endValue && this.cycleEnded) {
+						this.status = 'started';
+						this.cycleEnded = false;
+					} else this.status = 'scrolling';
+				},
+				setDirection() {
+					if (this.startValue === this.endValue) this.direction = this.direction;
+					else this.direction = this.endValue > 0 ? 'down' : 'up';
+				},
+				timer: null,
+				obtain(deltaY) {
+					this.startValue = deltaY;
+					if (this.status === 'started' || this.status === 'scrolling') clearTimeout(this.timer);
+
+					return new Promise((resolve) => {
+						this.timer = setTimeout(() => {
+							this.endValue = deltaY;
+							this.setDirection();
+							this.setStatus();
+							resolve(this);
+						}, 50);
+					});
+				},
+				async init(callback) {
+					const listener = async (e) => {
+						if (this.timestamps.then - this.timestamps.now >= 800) {
+							e.preventDefault();
+							return false;
+						}
+						this.timestamps.updateThen();
+						await this.obtain(e.deltaY).then((res) => {
+							this.timestamps.updateNow();
+							callback(e);
+							//console.log(e);
+						});
+					};
+
+					window.addEventListener('wheel', listener, { passive: false });
+
+					//window.addEventListener('touchmove', listener);
+				},
+			};
+
 			setTimeout(() => {
 				Array.from(divFaceFront.children).forEach(
 					(child) => (child.style.transform = 'translateX(0%)')
 				);
 			}, 400);
-
-			// Array.from(divWrapperRotatable.children).forEach((child) => {
-			// 	child.style.border = 'none';
-			// 	child.style.boxShadow = '3px 15px 115px #fff';
-			// });
-
-			const pixelsScrolledTop = {
-				startValue: 0,
-				endValue: 0,
-				scrollingDown: false,
-				setScrollingDown() {
-					this.scrollingDown = this.startValue > this.endValue;
-				},
-				setValue(scrolledPixelsValue, target) {
-					this.startValue = scrolledPixelsValue;
-
-					setTimeout(() => {
-						this.endValue = scrolledPixelsValue;
-						windowBeingScrolled.checkIfIs();
-						this.setScrollingDown();
-						console.log(this.scrollingDown);
-						// rotate(target, rotateK);
-					}, 250);
-				},
-			};
-
-			const windowBeingScrolled = {
-				is: false,
-				checkIfIs() {
-					this.is = pixelsScrolledTop.startValue === pixelsScrolledTop.endValue;
-					//console.log(this.is);
-				},
-			};
 
 			const mobileScreen = {
 				is: false,
@@ -457,44 +493,65 @@
 
 					if (computerMouse)
 						computerMouse.style.visibility =
-							this.is || document.documentElement.scrollTop > 0 ? 'hidden' : 'visible';
+							this.is || document.documentElement.scrollTop > 0 || rotateK > 0
+								? 'hidden'
+								: 'visible';
 				},
 			};
 			window.addEventListener('load', () => {
 				mobileScreen.checkIfIs();
-				carret.updateVisibility();
+				//carret.updateVisibility();
 			});
 
 			window.addEventListener('resize', () => {
 				mobileScreen.checkIfIs();
-				carret.updateVisibility();
+				//carret.updateVisibility();
 			});
 
 			let rotateK = 0;
+
+			scrollParams.init((e) => {
+				rotate(null, rotateK);
+				mobileScreen.checkIfIs();
+			});
+
 			function rotate(e, rK) {
 				const scrollPos = document.documentElement.scrollTop / 1.5;
 				const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
-				if (scrollPos > 0 && scrollPos <= height / 4) {
-					rotateK = 90;
-					computerMouse.remove();
-				} else if (scrollPos > height / 4 && scrollPos < height / 2) rotateK = 180;
-				else if (scrollPos > height / 2) rotateK = 270;
-				else rotateK = 0;
+				// if (scrollPos > 0 && scrollPos <= height / 4) {
+				// 	rotateK = 90;
+				// 	computerMouse.remove();
+				// } else if (scrollPos > height / 4 && scrollPos < height / 2) rotateK = 180;
+				// else if (scrollPos > height / 2) rotateK = 270;
+				// else rotateK = 0;
 
-				if (e.target && e.target.id === 'carret-down') {
+				if (scrollParams.status === 'started') {
+					if (scrollParams.direction === 'up') {
+						if (rK === 270) rotateK = 180;
+						else if (rK === 180) rotateK = 90;
+						else if (rK === 90) rotateK = 0;
+					}
+					if (scrollParams.direction === 'down') {
+						if (rK === 0) rotateK = 90;
+						else if (rK === 90) rotateK = 180;
+						else if (rK === 180) rotateK = 270;
+					}
+				}
+
+				if (e && e.target && e.target.id === 'carret-down') {
 					if (rK === 0) rotateK = 90;
 					else if (rK === 90) rotateK = 180;
 					else if (rK === 180) rotateK = 270;
 				}
 
-				if (e.target && e.target.id === 'carret-up') {
+				if (e && e.target && e.target.id === 'carret-up') {
 					if (rK === 270) rotateK = 180;
 					else if (rK === 180) rotateK = 90;
 					else if (rK === 90) rotateK = 0;
 				}
 
-				carret.updateVisibility();
+				//carret.updateVisibility();
 
 				divWrapperRotatable.style.transform = `rotate3d(1, 0, 0, ${rotateK}deg)`;
 
@@ -516,13 +573,12 @@
 				})();
 			}
 
-			window.addEventListener('scroll', (e) => {
-				mobileScreen.checkIfIs();
-				if (mobileScreen.is) return;
+			// window.addEventListener('scroll', (e) => {
+			// 	mobileScreen.checkIfIs();
+			// 	if (mobileScreen.is) return;
 
-				//pixelsScrolledTop.setValue(document.documentElement.scrollTop);
-				rotate(e.target);
-			});
+			// 	rotate(e.target);
+			// });
 
 			window.addEventListener('keyup', (e) => {
 				if (e.key === 'ArrowDown') rotateK = rotateK < 270 ? (rotateK += 90) : 270;
