@@ -474,9 +474,9 @@
 						});
 					};
 
-					window.addEventListener('wheel', listener, { passive: false });
-
-					//window.addEventListener('touchmove', listener);
+					if (window.matchMedia('(pointer: coarse)').matches)
+						window.addEventListener('touchmove', listener, { passive: false });
+					else window.addEventListener('wheel', listener, { passive: false });
 				},
 			};
 
