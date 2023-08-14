@@ -1,0 +1,19 @@
+{
+	"name": "portfolio_site",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/netlify": "^2.6.0",
+		"@astrojs/svelte": "^3.0.0",
+		"astro": "^2.5.6",
+		"sass": "^1.63.3",
+		"svelte-preprocess": "^5.0.4"
+	}
+}

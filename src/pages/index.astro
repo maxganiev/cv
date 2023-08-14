@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Index.astro';
+import Main from '@components/layout/Main.svelte';
+
+let data;
+const APIs = ['http://ip-api.com/json/', 'https://geolocation-db.com/json/'];
+
+for (let i = 0; i <= APIs.length; i++) {
+	try {
+		const response = await fetch(APIs[i]);
+		data = await response.json();
+		break;
+	} catch (error) {
+		data = { country: 'Russia' };
+	}
+}
+---
+
+<Layout>
+	<Main client:load='svelte' region={data} />
+</Layout>
