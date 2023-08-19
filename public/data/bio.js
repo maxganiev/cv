@@ -16,7 +16,7 @@ export const bioItemsList = [
 		),
 		new BioItem(
 			'Stack',
-			'JS (ES6) and its best available frameworks to get the job done: SvelteKit, Vue; NodeJS: I use express; CSS3 and SASS; static site generators (Astro); PHP (Laravel); mySQL - raw or using ORMs like Prisma; server configuration: NGINX, Apache; web compilers: Vite, Webpack, Snowpack; SEO optimization (high web metrics, meta tags, keywords etc.)'
+			'JS [SvelteKit, Vue]; NodeJS [express]; CSS3 [SASS, Bootstrap, Vuetify]; static site generators [Astro]; PHP [Laravel]; mySQL with (-out) ORMs like Prisma; server configuration [NGINX, Apache]; web compilers [Vite, Webpack, Snowpack]; SEO optimization'
 		),
 	],
 	[
@@ -29,7 +29,7 @@ export const bioItemsList = [
 		),
 		new BioItem(
 			'Стэк',
-			'JS (ES6) и лучшие из существующих фреймворков, чтобы работа выполнялась в кратчайшие сроки: SvelteKit, Vue; NodeJS (express); CSS3 и SASS; генераторы статических сайтов (Astro); PHP (Laravel); mySQL - "сырой" либо с применением ORM систем типа Prisma; конфигурация сервера: NGINX, Apache; сборщики: Vite, Webpack, Snowpack; SEO оптимизация (за счет высоких метрик, мета тагов, ключевых слов и т.д.)'
+			'JS [SvelteKit, Vue]; NodeJS [express]; CSS3 [SASS, Bootstrap, Vuetify]; генераторы статических сайтов [Astro]; PHP [Laravel]; mySQL с ORM (Prisma) и без; конфигурация сервера [NGINX, Apache]; сборщики[ Vite, Webpack, Snowpack]; SEO оптимизация'
 		),
 	],
 ];

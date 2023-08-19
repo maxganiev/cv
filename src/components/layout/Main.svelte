@@ -261,7 +261,7 @@
 	}
 </script>
 
-<main style="height: {showProjects ? 'auto' : '100vh'}" on:scroll={onMainScroll}>
+<main on:scroll={onMainScroll}>
 	<section class="deep bg-contrast-black">
 		<video
 			class="bg-video z-1"
@@ -342,10 +342,8 @@
 								<Project
 									info={project}
 									translateZ={zVals[index]}
-									opacity={isMobile || isSafariBrowser
-										? 1
-										: zVals[index] >= Math.abs(zSpacing) / 3 &&
-										  zVals[index] < Math.abs(zSpacing) / 1.4
+									opacity={zVals[index] >= Math.abs(zSpacing) / 3 &&
+									zVals[index] < Math.abs(zSpacing) / 1.4
 										? 0.6
 										: zVals[index] >= Math.abs(zSpacing) / 1.4
 										? 0
@@ -428,6 +426,7 @@
 <style lang="scss" scoped>
 	main {
 		width: 100%;
+		height: 100vh;
 		scroll-snap-type: y mandatory;
 		scroll-behavior: smooth;
 		overflow: scroll;
@@ -696,6 +695,11 @@
 					z-index: 5;
 					overflow: hidden;
 
+					@media (min-width: 150px) and (max-width: 750px) {
+						width: 60%;
+						height: 60%;
+					}
+
 					img {
 						width: 100%;
 						height: 100%;
@@ -732,7 +736,7 @@
 
 				@media (min-width: 150px) and (max-width: 750px) {
 					top: 65vh;
-					min-height: 25vh;
+					min-height: 35vh;
 				}
 
 				.content {

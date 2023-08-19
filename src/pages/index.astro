@@ -3,7 +3,11 @@ import Layout from '../layouts/Index.astro';
 import Main from '@components/layout/Main.svelte';
 
 let data;
-const APIs = ['http://ip-api.com/json/', 'https://geolocation-db.com/json/'];
+const APIs = [
+	`https://www.iplocate.io/api/lookup/${Astro.clientAddress}`,
+	'http://ip-api.com/json/',
+	'https://geolocation-db.com/json/',
+];
 
 for (let i = 0; i <= APIs.length; i++) {
 	try {
