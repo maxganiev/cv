@@ -293,7 +293,8 @@
 									? 'translate-x-left-100'
 									: 'translate-x-right-100'} transition-06"
 							>
-								{bioItem.key}: <strong>{bioItem.value}</strong>
+								<strong>{bioItem.key}:</strong>
+								{bioItem.value}
 							</li>
 						{:else}
 							<li
@@ -301,7 +302,7 @@
 									? 'translate-x-left-100'
 									: 'translate-x-right-100'} transition-06"
 							>
-								{bioItem.key}: <br />
+								<strong>{bioItem.key}:</strong>
 								<ul class="bio-list-nested" bind:this={bioListNested}>
 									{#each bioItem.value.split(';') as nestedItem}
 										<li class="translate-y-bottom-200 transition-08">
@@ -333,8 +334,10 @@
 								<Project
 									info={project}
 									translateZ={zVals[index]}
-									opacity={zVals[index] >= Math.abs(zSpacing) / 3 &&
-									zVals[index] < Math.abs(zSpacing) / 1.4
+									opacity={isMobile || isSafariBrowser
+										? 1
+										: zVals[index] >= Math.abs(zSpacing) / 3 &&
+										  zVals[index] < Math.abs(zSpacing) / 1.4
 										? 0.6
 										: zVals[index] >= Math.abs(zSpacing) / 1.4
 										? 0
