@@ -7,7 +7,9 @@
 	import SwitchGroup from '@components/SwitchGroup.svelte';
 
 	export let region;
-	let isMobile = false;
+	let isMobile = false,
+		initIndex = (region.country || region.country_name) === 'Russia' ? 1 : 0;
+	langIndex.select(initIndex);
 
 	//BIO//
 	let bgVideo = {
@@ -19,15 +21,7 @@
 		},
 	};
 
-	let avatarWrapper,
-		bioContentList,
-		bioListNested,
-		isSafariBrowser,
-		initIndex,
-		astro,
-		tStart,
-		prevT,
-		startAnimation;
+	let avatarWrapper, bioContentList, bioListNested, isSafariBrowser, astro, tStart, prevT, startAnimation;
 
 	const transformCount = {
 		x: 0,
@@ -104,9 +98,6 @@
 			(navigator.userAgent.toLowerCase().includes('safari') &&
 				!navigator.userAgent.toLowerCase().includes('chrome')) ||
 			window.hasOwnProperty('safari');
-
-		initIndex = (region.country || region.country_name) === 'Russia' ? 1 : 0;
-		langIndex.select(initIndex);
 
 		const int = setInterval(() => {
 			if (!bgVideo.elem) return;

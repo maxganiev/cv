@@ -1,4 +1,4 @@
-import { writable, derived, readable } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
 import { bioItemsList } from 'public/data/bio';
 import { projectItemsList } from 'public/data/projects';
 
