@@ -21,7 +21,7 @@
 		},
 	};
 
-	let avatarWrapper, bioContentList, bioListNested, isSafariBrowser, astro, tStart, prevT, startAnimation;
+	let avatarWrapper, bioContentList, bioListNested, isSafariBrowser, astro, tStart, prevT, startAnimation, showHint;
 
 	const transformCount = {
 		x: 0,
@@ -152,12 +152,13 @@
 	});
 
 	//PROJECTS//
-	let zSpacing = -1600,
-		frames = [],
-		zVals = [],
+	let frames = [],
 		projectWrapper;
 
 	class Scrollable {
+		static zSpacing = -1600;
+		static zVals = [];
+
 		constructor(speed, currTop, lastPos, delta) {
 			this.speed = speed;
 			this.start = 350;
@@ -169,22 +170,26 @@
 		}
 
 		swipePages(e) {
+			const distanceKoefficient = isMobile ? -3.5 : -4.5;
 			const isWheelEvent = e.type === 'wheel' || e.type == undefined;
 			this.isDown = isWheelEvent ? e.deltaY < 0 : this.currTop < e.changedTouches[0].clientY;
 
 			if (this.isDown) this.clientTop -= this.speed;
 			else this.clientTop += this.speed;
 
-			if (!isWheelEvent) this.currTop = e.changedTouches[0].clientY;
+			if (!isWheelEvent) {
+				this.currTop = e.changedTouches[0].clientY;
+				showHint = false;
+			}
 
 			this.delta = this.lastPos - this.clientTop;
 			this.lastPos = this.clientTop;
 
-			zVals = zVals.slice(0, frames.length);
+			Scrollable.zVals = Scrollable.zVals.slice(0, frames.length);
 
 			for (let i = 0; i < frames.length; i++) {
-				zVals.push(i * zSpacing + zSpacing);
-				zVals[i] += this.delta * -4.5;
+				Scrollable.zVals.push(i * Scrollable.zSpacing + Scrollable.zSpacing);
+				Scrollable.zVals[i] += this.delta * distanceKoefficient;
 			}
 		}
 	}
@@ -213,6 +218,7 @@
 			}).then((res) => {
 				if (res) {
 					isMobile = window.matchMedia('(pointer: coarse)').matches;
+					showHint = isMobile;
 
 					if (!isMobile) {
 						bindedFunc = wheely.swipePages.bind(wheely);
@@ -326,6 +332,17 @@
 
 			{#if showProjects}
 				<div transition:fade class="project-container-root-fixed">
+					{#if isMobile && showHint}
+						<div class="hint">
+							<h5>
+								{['A hint:', 'Подсказка:'][$langIndex]}
+								{[
+									'To see the next project scroll the page with your finger',
+									'Листайте страницу, чтобы увидеть следующий проект',
+								][$langIndex]}
+							</h5>
+						</div>
+					{/if}
 					<p class="para-details">Telegram: @maxganiev</p>
 					<div class="project-container-fixed">
 						<button on:click={toggleProjects} class="btn btn-projects-off">&#10006;</button>
@@ -333,13 +350,16 @@
 							{#each $projectItems as project, index}
 								<Project
 									info={project}
-									translateZ={zVals[index]}
+									translateZ={Scrollable.zVals[index]}
 									opacity={isMobile || isSafariBrowser
 										? 1
-										: zVals[index] >= Math.abs(zSpacing) / 3 &&
-										  zVals[index] < Math.abs(zSpacing) / 1.4
+										: Scrollable.zVals[index] >=
+												Math.abs(Scrollable.zSpacing) / 3 &&
+										  Scrollable.zVals[index] <
+												Math.abs(Scrollable.zSpacing) / 1.4
 										? 0.6
-										: zVals[index] >= Math.abs(zSpacing) / 1.4
+										: Scrollable.zVals[index] >=
+										  Math.abs(Scrollable.zSpacing) / 1.4
 										? 0
 										: 1}
 									languageIndex={$langIndex}
@@ -638,6 +658,14 @@
 						width: 100%;
 						height: 100%;
 						background-color: #000;
+
+						.hint {
+							width: 50%;
+							margin: 40px auto;
+							font-size: $fs-mid-mob;
+							text-align: center;
+							color: $clr-pink;
+						}
 
 						.para-details {
 							margin-top: 50vh;
