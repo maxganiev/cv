@@ -7,24 +7,17 @@
 		display: flex;
 		flex-direction: column;
 		width: 15px;
-		height: 50px;
+		height: 30px;
 		justify-content: space-evenly;
 		align-items: center;
 		background: transparent;
 		position: absolute;
-		bottom: 0px;
-		right: 50%;
-
-		@media (min-height: 150px) and (max-height: 450px), (min-width: 150px) and (max-width: 750px) {
-			//right: 80%;
-			transform: scale(0.8);
-			bottom: unset;
-			top: 30px;
-		}
+		left: 5vw;
+		bottom: 15vh;
 
 		.pic {
 			width: inherit;
-			height: 40px;
+			height: inherit;
 			border-radius: 20px;
 			border: 0.8px $clr-pink solid;
 			position: relative;
@@ -35,7 +28,7 @@
 
 			.dot {
 				position: absolute;
-				top: 30px;
+				top: 10px;
 				background: $clr-pink;
 				width: 8px;
 				height: 8px;
@@ -55,10 +48,10 @@
 
 	@keyframes animate-dot {
 		from {
-			top: 20px;
+			top: 10px;
 		}
 		to {
-			top: 30px;
+			top: 20px;
 		}
 	}
 
