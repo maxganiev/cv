@@ -29,7 +29,7 @@ export const bioItemsList = [
 		),
 		new BioItem(
 			'Стэк',
-			'JS [SvelteKit, Vue]; NodeJS [express]; CSS3 [SASS, Bootstrap, Vuetify]; генераторы статических сайтов [Astro]; PHP [Laravel]; mySQL с ORM (Prisma) и без; конфигурация сервера [NGINX, Apache]; сборщики[ Vite, Webpack, Snowpack]; SEO оптимизация'
+			'JS [SvelteKit, Vue]; NodeJS [express]; CSS3 [SASS, Bootstrap, Vuetify]; генераторы статических сайтов [Astro]; PHP [Laravel]; mySQL с ORM (Prisma) и без; конфигурация сервера [NGINX, Apache]; сборщики [Vite, Webpack, Snowpack]; SEO оптимизация'
 		),
 	],
 ];

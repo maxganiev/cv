@@ -5,6 +5,7 @@
 	import { fade } from 'svelte/transition';
 	import FillableButton from '@components/FillableButton.svelte';
 	import SwitchGroup from '@components/SwitchGroup.svelte';
+	import ScrollHint from '@components/ScrollHint.svelte';
 
 	export let region;
 	let isMobile = false,
@@ -21,7 +22,16 @@
 		},
 	};
 
-	let avatarWrapper, bioContentList, bioListNested, isSafariBrowser, astro, tStart, prevT, startAnimation, showHint;
+	let avatarWrapper,
+		bioContentList,
+		bioListNested,
+		isSafariBrowser,
+		astro,
+		tStart,
+		prevT,
+		startAnimation,
+		showHint = false,
+		currentPageNum;
 
 	const transformCount = {
 		x: 0,
@@ -174,12 +184,21 @@
 			const isWheelEvent = e.type === 'wheel' || e.type == undefined;
 			this.isDown = isWheelEvent ? e.deltaY < 0 : this.currTop < e.changedTouches[0].clientY;
 
+			currentPageNum = (() => {
+				const projectsEls = Array.from(document.getElementsByClassName('project-item'));
+				const scrolledProjectsElsLength = projectsEls.filter((item) => item.style.opacity != 1).length;
+				return scrolledProjectsElsLength + 1 > projectsEls.length
+					? scrolledProjectsElsLength
+					: scrolledProjectsElsLength + 1;
+			})();
+
 			if (this.isDown) this.clientTop -= this.speed;
 			else this.clientTop += this.speed;
 
+			showHint = currentPageNum === 1;
+
 			if (!isWheelEvent) {
 				this.currTop = e.changedTouches[0].clientY;
-				showHint = false;
 			}
 
 			this.delta = this.lastPos - this.clientTop;
@@ -194,8 +213,8 @@
 		}
 	}
 
-	const wheely = new Scrollable(3.8, null, 0, 0);
-	const touchy = new Scrollable(8, null, 0, 0);
+	const wheely = new Scrollable(6, null, 0, 0);
+	const touchy = new Scrollable(12, null, 0, 0);
 	let bindedFunc = new Function();
 
 	$: showProjects = false;
@@ -218,7 +237,6 @@
 			}).then((res) => {
 				if (res) {
 					isMobile = window.matchMedia('(pointer: coarse)').matches;
-					showHint = isMobile;
 
 					if (!isMobile) {
 						bindedFunc = wheely.swipePages.bind(wheely);
@@ -332,16 +350,20 @@
 
 			{#if showProjects}
 				<div transition:fade class="project-container-root-fixed">
-					{#if isMobile && showHint}
-						<div class="hint">
-							<h5>
-								{['A hint:', 'Подсказка:'][$langIndex]}
-								{[
-									'To see the next project scroll the page with your finger',
-									'Листайте страницу, чтобы увидеть следующий проект',
-								][$langIndex]}
-							</h5>
-						</div>
+					<div class="pagination z-1">
+						<span class="page"
+							>{['Project', 'Проект'][$langIndex]}
+							<span class="page-num">{currentPageNum}</span>
+						</span>
+
+						<span class="page"
+							>{['out of ', 'из '][$langIndex]}
+							<span class="page-num">{$projectItems.length}</span></span
+						>
+					</div>
+
+					{#if showHint}
+						<ScrollHint />
 					{/if}
 					<p class="para-details">Telegram: @maxganiev</p>
 					<div class="project-container-fixed">
@@ -351,12 +373,9 @@
 								<Project
 									info={project}
 									translateZ={Scrollable.zVals[index]}
-									opacity={isMobile || isSafariBrowser
-										? 1
-										: Scrollable.zVals[index] >=
-												Math.abs(Scrollable.zSpacing) / 3 &&
-										  Scrollable.zVals[index] <
-												Math.abs(Scrollable.zSpacing) / 1.4
+									opacity={Scrollable.zVals[index] >=
+										Math.abs(Scrollable.zSpacing) / 3 &&
+									Scrollable.zVals[index] < Math.abs(Scrollable.zSpacing) / 1.4
 										? 0.6
 										: Scrollable.zVals[index] >=
 										  Math.abs(Scrollable.zSpacing) / 1.4
@@ -659,12 +678,40 @@
 						height: 100%;
 						background-color: #000;
 
-						.hint {
-							width: 50%;
-							margin: 40px auto;
-							font-size: $fs-mid-mob;
-							text-align: center;
-							color: $clr-pink;
+						.pagination {
+							position: absolute;
+							bottom: 10vh;
+							left: 5vw;
+							line-height: 0.8rem;
+
+							.page {
+								display: block;
+
+								&:nth-of-type(2) {
+									position: absolute;
+									right: -10px;
+								}
+
+								span.page-num {
+									font-size: 2rem;
+									color: $clr-pink;
+								}
+							}
+
+							@media (min-height: 150px) and (max-height: 450px),
+								(min-width: 150px) and (max-width: 750px) {
+								& {
+									left: unset;
+									right: 10vw;
+									font-size: 0.8rem;
+
+									.page {
+										& > span.page-num {
+											font-size: 1rem;
+										}
+									}
+								}
+							}
 						}
 
 						.para-details {

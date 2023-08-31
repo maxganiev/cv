@@ -37,5 +37,12 @@
 		touch-action: none;
 		overflow: hidden;
 		background-color: #000;
+
+		& ::-webkit-scrollbar {
+			display: none;
+		}
+
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
 	}
 </style>

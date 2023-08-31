@@ -164,7 +164,7 @@
 		background-color: #000;
 		will-change: transform;
 		transform-style: preserve-3d;
-		transition: all 0.4s ease-out;
+		transition: transform 0.4s ease-out;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-evenly;
@@ -185,7 +185,6 @@
 		.tab-panel {
 			display: flex;
 			width: 100%;
-			//justify-content: space-evenly;
 			justify-content: center;
 			height: 5%;
 
