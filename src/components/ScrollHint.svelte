@@ -6,25 +6,25 @@
 	.scrollhint-wrapper {
 		display: flex;
 		flex-direction: column;
-		width: 25px;
-		height: 80px;
+		width: 15px;
+		height: 50px;
 		justify-content: space-evenly;
 		align-items: center;
 		background: transparent;
 		position: absolute;
-		bottom: 10px;
+		bottom: 0px;
 		right: 50%;
 
 		@media (min-height: 150px) and (max-height: 450px), (min-width: 150px) and (max-width: 750px) {
 			//right: 80%;
 			transform: scale(0.8);
 			bottom: unset;
-			top: 40px;
+			top: 30px;
 		}
 
 		.pic {
 			width: inherit;
-			height: 60px;
+			height: 40px;
 			border-radius: 20px;
 			border: 0.8px $clr-pink solid;
 			position: relative;
@@ -37,8 +37,8 @@
 				position: absolute;
 				top: 30px;
 				background: $clr-pink;
-				width: 10px;
-				height: 10px;
+				width: 8px;
+				height: 8px;
 				animation-name: animate-dot;
 				animation-duration: 1s;
 				animation-iteration-count: infinite;
@@ -55,16 +55,16 @@
 
 	@keyframes animate-dot {
 		from {
-			top: 30px;
+			top: 20px;
 		}
 		to {
-			top: 40px;
+			top: 30px;
 		}
 	}
 
 	@keyframes animate-dot-mob {
 		from {
-			top: 30px;
+			top: 20px;
 		}
 		to {
 			top: 10px;
