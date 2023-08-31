@@ -15,6 +15,11 @@
 		left: 5vw;
 		bottom: 15vh;
 
+		@media (min-height: 150px) and (max-height: 450px), (min-width: 150px) and (max-width: 750px) {
+			left: unset;
+			right: 10vw;
+		}
+
 		.pic {
 			width: inherit;
 			height: inherit;
