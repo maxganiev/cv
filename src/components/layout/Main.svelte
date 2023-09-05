@@ -272,7 +272,7 @@
 		setTimeout(() => {
 			startAnimation = sectionDetails.getBoundingClientRect().top <= document.documentElement.scrollTop;
 			animateAstro();
-		}, 0);
+		}, 1000);
 	}
 </script>
 
