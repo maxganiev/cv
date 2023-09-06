@@ -60,6 +60,8 @@
 		currentTab = 'bio';
 		swipePreviewOrientation();
 	});
+
+	let video;
 </script>
 
 <div
@@ -116,8 +118,21 @@
 	>
 		<div class="video-overlay">
 			<div class="layer z-1" />
-			<video autoplay muted loop playsinline src={info.video_urls[orientationOptions.videoIndex]} />
+			<video
+				autoplay
+				muted
+				loop
+				playsinline
+				src={info.video_urls[orientationOptions.videoIndex]}
+				bind:this={video}
+			/>
 		</div>
+
+		{#if !video}
+			<div class="loader">
+				<img src="/assets/imgs/loader.gif" alt="loader" />
+			</div>
+		{/if}
 
 		<div class="orientation-switch">
 			{#if info.available_orientations.includes('landscape')}

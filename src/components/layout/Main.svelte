@@ -54,7 +54,6 @@
 		}
 
 		//const elapsed = timeStamp - tStart;
-		//console.log(elapsed % 100 <= 90);
 
 		if (prevT !== timeStamp) {
 			const astroRect = astro.getBoundingClientRect();
@@ -269,10 +268,8 @@
 
 	let sectionDetails;
 	function onMainScroll() {
-		setTimeout(() => {
-			startAnimation = sectionDetails.getBoundingClientRect().top <= document.documentElement.scrollTop;
-			animateAstro();
-		}, 0);
+		startAnimation = sectionDetails.getBoundingClientRect().top <= document.documentElement.scrollTop;
+		animateAstro(Date.now());
 	}
 </script>
 
