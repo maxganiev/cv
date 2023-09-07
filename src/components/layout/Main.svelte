@@ -97,7 +97,7 @@
 
 		prevT = timeStamp;
 
-		if (startAnimation) window.requestAnimationFrame(animateAstro);
+		if (startAnimation && !showProjects) window.requestAnimationFrame(animateAstro);
 		else window.cancelAnimationFrame(animateAstro);
 	}
 
