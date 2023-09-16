@@ -3,6 +3,7 @@ import Layout from '../layouts/Index.astro';
 import Main from '@components/layout/Main.svelte';
 
 let data;
+
 const APIs = [
 	`https://www.iplocate.io/api/lookup/${Astro.clientAddress}`,
 	'http://ip-api.com/json/',
@@ -13,13 +14,18 @@ for (let i = 0; i <= APIs.length; i++) {
 	try {
 		const response = await fetch(APIs[i]);
 		data = await response.json();
+
+		//ex. if request limits was exceeded
+		if (!data.hasOwnProperty('country')) data = { country: 'Russia' };
 		break;
 	} catch (error) {
 		data = { country: 'Russia' };
 	}
 }
+
+Astro.props.region = data.country;
 ---
 
-<Layout>
+<Layout region={data.country}>
 	<Main client:load='svelte' region={data} />
 </Layout>

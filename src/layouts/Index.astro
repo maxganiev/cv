@@ -1,5 +1,11 @@
+---
+const isRussia = Astro.props.region === 'Russia';
+const lang = isRussia ? 'ru' : 'en';
+const title = isRussia ? 'Ганиев Максим | Разработчик' : 'Max Ganiev | Developer';
+---
+
 <!DOCTYPE html>
-<html lang='en'>
+<html lang={lang}>
 	<head>
 		<!-- Google tag (gtag.js) -->
 		<script async src='https://www.googletagmanager.com/gtag/js?id=G-B87KWQCQCC'></script>
@@ -17,7 +23,7 @@
 		<meta name='viewport' content='width=device-width' />
 		<link rel='icon' type='image/svg+xml' href='/assets/favicon.svg' />
 		<!-- <meta name='generator' content={Astro.generator} /> -->
-		<title>Max Ganiev | Developer</title>
+		<title>{title}</title>
 		<meta name='google-site-verification' content='hJPcq5cBQq-Dl6NvECHDD30YvzEN68zjUVJhB_kfcNg' />
 		<meta name='yandex-verification' content='54558e44843fcd50' />
 	</head>

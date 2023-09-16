@@ -2,8 +2,9 @@
 	import FillableButton from '@components/FillableButton.svelte';
 	import { langIndex, screenParams } from '@locale/stores';
 	import { onMount } from 'svelte';
+	import Loader from '@components/Loader.svelte';
 
-	export let info, translateZ, opacity, languageIndex, classname;
+	export let info, translateZ, opacity, languageIndex, classname, loadVideo;
 
 	/**@type {HTMLButtonElement}*/
 	let btnDefaultFocused;
@@ -56,12 +57,17 @@
 		});
 	}
 
+	let video,
+		canplay = false;
+
+	$: if (video) {
+		video.oncanplay = () => (canplay = true);
+	}
+
 	onMount(() => {
 		currentTab = 'bio';
 		swipePreviewOrientation();
 	});
-
-	let video;
 </script>
 
 <div
@@ -118,21 +124,24 @@
 	>
 		<div class="video-overlay">
 			<div class="layer z-1" />
-			<video
-				autoplay
-				muted
-				loop
-				playsinline
-				src={info.video_urls[orientationOptions.videoIndex]}
-				bind:this={video}
-			/>
-		</div>
 
-		{#if !video}
-			<div class="loader">
-				<img src="/assets/imgs/loader.gif" alt="loader" />
-			</div>
-		{/if}
+			{#if !loadVideo && !video}
+				<div class="temp-holder" />
+			{:else}
+				<video
+					autoplay
+					muted
+					loop
+					playsinline
+					src={info.video_urls[orientationOptions.videoIndex]}
+					bind:this={video}
+				/>
+			{/if}
+
+			{#if !video || !canplay}
+				<Loader />
+			{/if}
+		</div>
 
 		<div class="orientation-switch">
 			{#if info.available_orientations.includes('landscape')}
@@ -161,7 +170,8 @@
 </div>
 
 <style lang="scss" scoped>
-	video {
+	video,
+	.temp-holder {
 		width: 100%;
 		height: 100%;
 		object-fit: contain;

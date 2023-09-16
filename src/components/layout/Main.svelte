@@ -6,6 +6,7 @@
 	import FillableButton from '@components/FillableButton.svelte';
 	import SwitchGroup from '@components/SwitchGroup.svelte';
 	import ScrollHint from '@components/ScrollHint.svelte';
+	import Loader from '@components/Loader.svelte';
 
 	export let region;
 	let isMobile = false,
@@ -286,9 +287,7 @@
 		/>
 
 		{#if !bgVideo.elem}
-			<div class="loader">
-				<img src="/assets/imgs/loader.gif" alt="loader" />
-			</div>
+			<Loader />
 		{/if}
 
 		{#if bgVideo.elem && !bgVideo.loaded}
@@ -380,6 +379,7 @@
 										: 1}
 									languageIndex={$langIndex}
 									classname={index % 2 === 0 ? 'even' : 'odd'}
+									loadVideo={index + 1 === currentPageNum}
 								/>
 							{/each}
 						</div>
@@ -485,15 +485,6 @@
 					z-index: 2;
 				}
 
-				.loader {
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					background: rgba(0, 0, 0, 0.9);
-					z-index: 1;
-				}
-
-				.loader,
 				.bg-video,
 				.bg-img {
 					position: absolute;
