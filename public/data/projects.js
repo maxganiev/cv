@@ -48,7 +48,7 @@ export const projectItemsList = [
 	[
 		new Project(
 			'Organizational chart editor',
-			'This tool allows easily manipulate an organizational structure using visual interface, specifically: \n as admin, you can edit existing schema or build it from scratch; \n you are also free to update employees personal data including photos; \n to "fire" or to "hire" emplyees with a button click;\n as a guest, you can view schema or search users of releavant department \n  the scheme is at final pre-product stage - mobile adaptation and backend services are to be set up',
+			'This tool allows easily manipulate an organizational structure using visual interface, specifically: \n as admin, you can edit existing schema or build it from scratch; \n you are also free to update employees personal data including photos; \n to "fire" or to "hire" emplyees with a button click;\n as a guest, you can view schema or search users of releavant department \n  this is the pre-production version, the fullscale production one is currently connected to backend services, and available for authorized users',
 			'https://schema-draggable.netlify.app/',
 			'schema',
 			['landscape'],
@@ -83,7 +83,7 @@ export const projectItemsList = [
 	[
 		new Project(
 			'Редактор организационной структуры',
-			'Позволяет управлять структурой организации при помощи визуального интерфейса, а именно: \n как администратор Вы можете редактировать существующую структуру подчиненности внутри компании либо создавать ее с нуля; \n обновлять личную информацию о сотрудниках, включая фото; \n "увольнять" или "нанимать" сотрудников кликом мыши; \n как гость, Вы сможете работать со схемой в режиме просмотра и искать сотрудников необходимых отделов;\n  В настоящий момент схема находится на финальной стадии доработки - подключается бэкенд, планируется мобильная адаптация.',
+			'Позволяет управлять структурой организации при помощи визуального интерфейса, а именно: \n как администратор Вы можете редактировать существующую структуру подчиненности внутри компании либо создавать ее с нуля; \n обновлять личную информацию о сотрудниках, включая фото; \n "увольнять" или "нанимать" сотрудников кликом мыши; \n как гость, Вы сможете работать со схемой в режиме просмотра и искать сотрудников необходимых отделов;\n  это версия пред-продакшна, фулл-скейл продакшн-версия подключена к бэкенд-сервису и доступна для авторизованных пользователей.',
 			'https://schema-draggable.netlify.app/',
 			'schema',
 			['landscape'],
