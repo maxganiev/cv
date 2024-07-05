@@ -142,6 +142,21 @@ a {
 		transition: all 0.4s ease-out;
 		opacity: 0.7;
 		transform: scale(1.1);
+
+		&.no-transform {
+			opacity: 1 !important;
+			transform: unset !important;
+		}
+	}
+}
+
+.inbuilt-link {
+	cursor: text;
+	color: #fff;
+
+	&:hover {
+		opacity: 1 !important;
+		transform: unset !important;
 	}
 }
 

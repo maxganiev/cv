@@ -24,7 +24,7 @@ class Project {
 		if (this.available_orientations.length === 2)
 			this.video_urls = [
 				'/assets/video/projects/' + this.asset_folder + '/d.mp4',
-				'/assets/video/projects/' + this.asset_folder + '/m.mp4',
+				'/assets/video/projects/' + this.asset_folder + '/m.mp4'
 			];
 		else {
 			if (this.available_orientations.includes('landscape'))
@@ -48,11 +48,11 @@ export const projectItemsList = [
 	[
 		new Project(
 			'Organizational chart editor',
-			'This tool allows easily manipulate an organizational structure using visual interface, specifically: \n as admin, you can edit existing schema or build it from scratch; \n you are also free to update employees personal data including photos; \n to "fire" or to "hire" emplyees with a button click;\n as a guest, you can view schema or search users of releavant department \n  this is the pre-production version, the fullscale production one is currently connected to backend services, and available for authorized users',
+			'This tool allows easily manipulate an organizational structure using visual interface, specifically: \n as admin, you can edit existing schema or build it from scratch; \n you are also free to update employees personal data including photos; \n to "fire" or to "hire" emplyees with a button click;\n as a guest, you can view schema or search users of releavant department \n  this is the pre-production version, the fullscale production one is currently connected to backend services, and available for authorized users. <br/><br/> <a class="inbuilt-link" href="https://portal.elcomspb.ru/interactive-scheme" target="_blank">And this is how the final versions of schemas <strong style="color: #BF4081; cursor: pointer;">looks</strong>. You can\'t do much here as only admins have CRUD functionality.</a>',
 			'https://schema-draggable.netlify.app/',
 			'schema',
 			['landscape'],
-			['Vue2']
+			['Vue2', 'Laravel 5']
 		),
 		new Project(
 			'High voltage motor configurator',
@@ -65,7 +65,7 @@ export const projectItemsList = [
 		new Project(
 			'Pumps selector',
 			'A specific tool for technical staff that helps you to choose an industrial electric pump by either entering necessary duty points or by using interactive chart. The selector also provides real-time prices, we also plan to include real-time stock availability. It also suggests you related products.',
-			'https://www.elcomspb.ru/pumps_selector/',
+			'https://old.elcomspb.ru/pumps_selector/',
 			'pump',
 			['landscape', 'portrait'],
 			['JS', 'Laravel 5']
@@ -77,17 +77,17 @@ export const projectItemsList = [
 			'portal',
 			['landscape'],
 			['Vue2', 'Laravel 5']
-		),
+		)
 	],
 	//RU
 	[
 		new Project(
 			'Редактор организационной структуры',
-			'Позволяет управлять структурой организации при помощи визуального интерфейса, а именно: \n как администратор Вы можете редактировать существующую структуру подчиненности внутри компании либо создавать ее с нуля; \n обновлять личную информацию о сотрудниках, включая фото; \n "увольнять" или "нанимать" сотрудников кликом мыши; \n как гость, Вы сможете работать со схемой в режиме просмотра и искать сотрудников необходимых отделов;\n  это версия пред-продакшна, фулл-скейл продакшн-версия подключена к бэкенд-сервису и доступна для авторизованных пользователей.',
+			'Позволяет управлять структурой организации при помощи визуального интерфейса, а именно: \n как администратор Вы можете редактировать существующую структуру подчиненности внутри компании либо создавать ее с нуля; \n обновлять личную информацию о сотрудниках, включая фото; \n "увольнять" или "нанимать" сотрудников кликом мыши; \n как гость, Вы сможете работать со схемой в режиме просмотра и искать сотрудников необходимых отделов;\n  это версия пред-продакшна, фулл-скейл продакшн-версия подключена к бэкенд-сервису и доступна для авторизованных пользователей. <br/><br/> <a class="inbuilt-link" href="https://portal.elcomspb.ru/interactive-scheme" target="_blank">А так выглядят схемы в <strong style="color: #BF4081; cursor: pointer;">финальной версии</strong>. Вносить в них изменения могут только администраторы.',
 			'https://schema-draggable.netlify.app/',
 			'schema',
 			['landscape'],
-			['Vue2']
+			['Vue2', 'Laravel 5']
 		),
 		new Project(
 			'Конфигуратор высоковольтных электродвигателей',
@@ -100,7 +100,7 @@ export const projectItemsList = [
 		new Project(
 			'Подбор насосного оборудования',
 			'Специализированный продукт для технических сотрудников, который поможет с подбором промышленного электронасоса по рабочим точкам либо с помощью интерактивного графика. В инструменте также выводятся цены на оборудование, обновляемые в режиме реального времени, также планируется добавить публикацию актуальных складских остатков. Также предлагаются сопутствующие товары.',
-			'https://www.elcomspb.ru/pumps_selector/',
+			'https://old.elcomspb.ru/pumps_selector/',
 			'pump',
 			['landscape', 'portrait'],
 			['JS', 'Laravel 5']
@@ -112,6 +112,6 @@ export const projectItemsList = [
 			'portal',
 			['landscape'],
 			['Vue2', 'Laravel 5']
-		),
-	],
+		)
+	]
 ];

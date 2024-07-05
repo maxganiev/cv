@@ -16,11 +16,11 @@
 		setCurrentOrientation(desktopSelected) {
 			this.currentOrientation = desktopSelected ? 'landscape' : 'portrait';
 			orientationOptions = orientationOptions;
-		},
+		}
 	};
 
 	const breakpoint = {
-		width: 760,
+		width: 760
 	};
 
 	function swipePreviewOrientation(e) {
@@ -71,15 +71,15 @@
 </script>
 
 <div
-	class={'project-item ' + classname}
+	class="{'project-item ' + classname}"
 	style="transform: translateZ({translateZ}px); opacity: {opacity}; pointer-events: {opacity !== 0
 		? 'all'
 		: 'none'}"
 >
 	<div
 		class="tab-panel"
-		on:click={swipeTabs}
-		bind:this={tabPanel}
+		on:click="{swipeTabs}"
+		bind:this="{tabPanel}"
 		style="display: {$screenParams.width < breakpoint.width ? 'flex' : 'none'}"
 	>
 		<button class="btn tab transition-02 focused" data-tab="bio">{['Content', 'Описание'][$langIndex]}</button>
@@ -98,11 +98,11 @@
 			{#if info.desc.indexOf('\n') !== -1}
 				<ul>
 					{#each info.desc.split('\n') as listItem}
-						<li>{listItem}</li>
+						<li>{@html listItem}</li>
 					{/each}
 				</ul>
 			{:else}
-				<p>{info.desc}</p>
+				<p>{@html info.desc}</p>
 			{/if}
 		</div>
 
@@ -113,29 +113,29 @@
 		</div>
 	</div>
 
-	<div class="separator" style="display: {$screenParams.width >= breakpoint.width ? 'block' : 'none'};" />
+	<div class="separator" style="display: {$screenParams.width >= breakpoint.width ? 'block' : 'none'};"></div>
 
 	<div
-		class={'video-wrapper' + ' ' + orientationOptions.currentOrientation}
+		class="{'video-wrapper' + ' ' + orientationOptions.currentOrientation}"
 		style="display: {$screenParams.width >= breakpoint.width ||
 		($screenParams.width < breakpoint.width && currentTab === 'video')
 			? 'block'
 			: 'none'}"
 	>
 		<div class="video-overlay">
-			<div class="layer z-1" />
+			<div class="layer z-1"></div>
 
 			{#if !loadVideo && !video}
-				<div class="temp-holder" />
+				<div class="temp-holder"></div>
 			{:else}
 				<video
 					autoplay
 					muted
 					loop
 					playsinline
-					src={info.video_urls[orientationOptions.videoIndex]}
-					bind:this={video}
-				/>
+					src="{info.video_urls[orientationOptions.videoIndex]}"
+					bind:this="{video}"
+				></video>
 			{/if}
 
 			{#if !video || !canplay}
@@ -148,12 +148,13 @@
 				<button
 					class="transition-02 focused"
 					data-screen-type="desktop"
-					on:click={swipePreviewOrientation}
-					bind:this={btnDefaultFocused}
-				/>
+					on:click="{swipePreviewOrientation}"
+					bind:this="{btnDefaultFocused}"
+				></button>
 			{/if}
 			{#if info.available_orientations.includes('portrait')}
-				<button class="transition-02" data-screen-type="mobile" on:click={swipePreviewOrientation} />
+				<button class="transition-02" data-screen-type="mobile" on:click="{swipePreviewOrientation}"
+				></button>
 			{/if}
 		</div>
 	</div>
@@ -161,11 +162,11 @@
 	<div class="link-wrapper">
 		<FillableButton
 			role="button"
-			content={['Go to page', 'Перейти на страничку'][languageIndex]}
-			onclick={(e) => e.target.nextElementSibling.click()}
+			content="{['Go to page', 'Перейти на страничку'][languageIndex]}"
+			onclick="{(e) => e.target.nextElementSibling.click()}"
 			styling="width: 40%; min-width: 180px; margin: 0 auto;"
 		/>
-		<a href={info.link} target="_blank" style="display: none" />
+		<a href="{info.link}" target="_blank" style="display: none"></a>
 	</div>
 </div>
 
