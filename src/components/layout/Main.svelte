@@ -20,7 +20,7 @@
 		setLoaded(readyState) {
 			this.loaded = readyState === 4;
 			bgVideo = bgVideo;
-		},
+		}
 	};
 
 	let avatarWrapper,
@@ -36,17 +36,17 @@
 
 	const transformCount = {
 		x: 0,
-		y: 0,
+		y: 0
 	};
 
 	const ref = {
-		FillableButton: null,
+		FillableButton: null
 	};
 
 	const moveTo = {
 		down: true,
 		right: true,
-		deg: 0,
+		deg: 0
 	};
 
 	function animateAstro(timeStamp) {
@@ -120,29 +120,36 @@
 				Array.from(bioContentList.children).forEach(
 					async (child, index, arr) =>
 						await new Promise((resolve) =>
-							setTimeout(() => {
-								child.classList.replace(
-									index % 2 === 0
-										? 'translate-x-left-100'
-										: 'translate-x-right-100',
-									'translate-x-0'
-								);
+							setTimeout(
+								() => {
+									child.classList.replace(
+										index % 2 === 0
+											? 'translate-x-left-100'
+											: 'translate-x-right-100',
+										'translate-x-0'
+									);
 
-								if (index === arr.length - 1) resolve(true);
-							}, 200 * index + 1)
+									if (index === arr.length - 1) resolve(true);
+								},
+								200 * index + 1
+							)
 						).then((res) => {
 							if (res) {
 								Array.from(bioListNested.children).forEach(
 									async (child, index, arr) =>
 										await new Promise((resolve) =>
-											setTimeout(() => {
-												child.classList.replace(
-													'translate-y-bottom-200',
-													'translate-y-0'
-												);
+											setTimeout(
+												() => {
+													child.classList.replace(
+														'translate-y-bottom-200',
+														'translate-y-0'
+													);
 
-												if (index === arr.length - 1) resolve(true);
-											}, 200 * index + 1)
+													if (index === arr.length - 1)
+														resolve(true);
+												},
+												200 * index + 1
+											)
 										).then(
 											(res) =>
 												res &&
@@ -241,13 +248,13 @@
 					if (!isMobile) {
 						bindedFunc = wheely.swipePages.bind(wheely);
 						window.addEventListener('wheel', bindedFunc, {
-							passive: false,
+							passive: false
 						});
 						wheely.swipePages(window);
 					} else {
 						bindedFunc = touchy.swipePages.bind(touchy);
 						window.addEventListener('touchmove', bindedFunc, {
-							passive: false,
+							passive: false
 						});
 					}
 
@@ -274,7 +281,7 @@
 	}
 </script>
 
-<main on:scroll={onMainScroll}>
+<main on:scroll="{onMainScroll}">
 	<section class="deep bg-contrast-black">
 		<video
 			class="bg-video z-1"
@@ -283,8 +290,8 @@
 			loop
 			playsinline
 			src="/assets/video/ship.mp4"
-			bind:this={bgVideo.elem}
-		/>
+			bind:this="{bgVideo.elem}"
+		></video>
 
 		{#if !bgVideo.elem}
 			<Loader />
@@ -295,17 +302,17 @@
 		{/if}
 
 		<div class="lang-panel">
-			<SwitchGroup values={[0, 1]} {initIndex} onChange={(e) => langIndex.select(e.target.value)} />
+			<SwitchGroup values="{[0, 1]}" {initIndex} onChange="{(e) => langIndex.select(e.target.value)}" />
 		</div>
 		<div class="content z-3">
 			<div class="bio">
-				<div class="avatar-wrapper translate-y-top-100 transition-02" bind:this={avatarWrapper}>
+				<div class="avatar-wrapper translate-y-top-100 transition-02" bind:this="{avatarWrapper}">
 					<div class="avatar z-1">
 						<img src="/assets/imgs/Max.png" alt="Max" />
 					</div>
 				</div>
 
-				<ul class="bio-content" bind:this={bioContentList}>
+				<ul class="bio-content" bind:this="{bioContentList}">
 					{#each $bioItems as bioItem, index}
 						{#if !['Stack', 'Стэк'].includes(bioItem.key)}
 							<li
@@ -323,7 +330,7 @@
 									: 'translate-x-right-100'} transition-06"
 							>
 								<strong>{bioItem.key}:</strong>
-								<ul class="bio-list-nested" bind:this={bioListNested}>
+								<ul class="bio-list-nested" bind:this="{bioListNested}">
 									{#each bioItem.value.split(';') as nestedItem}
 										<li class="translate-y-bottom-200 transition-08">
 											{nestedItem}
@@ -336,11 +343,11 @@
 				</ul>
 				<FillableButton
 					role="button"
-					cssClasses={['translate-y-bottom-200']}
-					content={['Check out project examples', 'Посмотреть примеры проектов'][$langIndex]}
-					onclick={toggleProjects}
+					cssClasses="{['translate-y-bottom-200']}"
+					content="{['Check out project examples', 'Посмотреть примеры проектов'][$langIndex]}"
+					onclick="{toggleProjects}"
 					styling="margin: 2.5% auto; height: 5vh;"
-					bind:this={ref.FillableButton}
+					bind:this="{ref.FillableButton}"
 				/>
 			</div>
 
@@ -363,23 +370,23 @@
 					{/if}
 					<p class="para-details">Telegram: @maxganiev</p>
 					<div class="project-container-fixed">
-						<button on:click={toggleProjects} class="btn btn-projects-off">&#10006;</button>
-						<div class="project-wrapper" bind:this={projectWrapper}>
+						<button on:click="{toggleProjects}" class="btn btn-projects-off">&#10006;</button>
+						<div class="project-wrapper" bind:this="{projectWrapper}">
 							{#each $projectItems as project, index}
 								<Project
-									info={project}
-									translateZ={Scrollable.zVals[index]}
-									opacity={Scrollable.zVals[index] >=
+									info="{project}"
+									translateZ="{Scrollable.zVals[index]}"
+									opacity="{Scrollable.zVals[index] >=
 										Math.abs(Scrollable.zSpacing) / 3 &&
 									Scrollable.zVals[index] < Math.abs(Scrollable.zSpacing) / 1.4
 										? 0.6
 										: Scrollable.zVals[index] >=
-										  Math.abs(Scrollable.zSpacing) / 1.4
-										? 0
-										: 1}
-									languageIndex={$langIndex}
-									classname={index % 2 === 0 ? 'even' : 'odd'}
-									loadVideo={index + 1 === currentPageNum}
+											  Math.abs(Scrollable.zSpacing) / 1.4
+											? 0
+											: 1}"
+									languageIndex="{$langIndex}"
+									classname="{index % 2 === 0 ? 'even' : 'odd'}"
+									loadVideo="{index + 1 === currentPageNum}"
 								/>
 							{/each}
 						</div>
@@ -388,8 +395,8 @@
 			{/if}
 		</div>
 	</section>
-	<section class="bg-contrast-white z-4" bind:this={sectionDetails}>
-		<div class="astro" bind:this={astro}><img src="/assets/imgs/bg-2.png" alt="astronaut" /></div>
+	<section class="bg-contrast-white z-4" bind:this="{sectionDetails}">
+		<div class="astro" bind:this="{astro}"><img src="/assets/imgs/bg-2.png" alt="astronaut" /></div>
 
 		<div class="details">
 			<strong
@@ -398,9 +405,9 @@
 					styling="height: auto; color: #000"
 					role="button"
 					content="@maxganiev"
-					onclick={(e) => e.target.nextElementSibling.click()}
+					onclick="{(e) => e.target.nextElementSibling.click()}"
 				/>
-				<a href="https://t.me/maxganiev" target="_blank" style="display: none;" />
+				<a href="https://t.me/maxganiev" target="_blank" style="display: none;"></a>
 			</strong>
 			<br />
 			<strong
@@ -409,9 +416,9 @@
 					styling="height: auto; color: #000"
 					role="button"
 					content="maxganiev"
-					onclick={(e) => e.target.nextElementSibling.click()}
+					onclick="{(e) => e.target.nextElementSibling.click()}"
 				/>
-				<a href="https://github.com/maxganiev" target="_blank" style="display: none;" /></strong
+				<a href="https://github.com/maxganiev" target="_blank" style="display: none;"></a></strong
 			>
 		</div>
 
@@ -423,25 +430,6 @@
 							$langIndex
 						]}
 					</p>
-				</div>
-
-				<div>
-					<p>{['References:', 'Референс:'][$langIndex]}</p>
-					<ul class="list">
-						{#each [['Bg video->https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=video&utm_content=71654', 'Avatar->https://instagram.com/ganieva.anastasia?igshid=NTc4MTIwNjQ2YQ=='], ['Фоновое видео->https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=video&utm_content=71654', 'Аватар->https://instagram.com/ganieva.anastasia?igshid=NTc4MTIwNjQ2YQ==']][$langIndex] as listItem}
-							<li>
-								<FillableButton
-									styling="height: auto; width: 100%;"
-									role="button"
-									content={listItem.split('->')[0]}
-									onclick={(e) => e.target.nextElementSibling.click()}
-								/>
-								<a href={listItem.split('->')[1]} target="_blank" style="display: none;"
-									>.</a
-								>
-							</li>
-						{/each}
-					</ul>
 				</div>
 			</div>
 
