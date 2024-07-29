@@ -239,7 +239,8 @@
 		async setSwipeSpeed() {
 			const mouseMoveStep = await this.setMouseMoveStep();
 			if (mouseMoveStep <= 5) return;
-			this.speed = mouseMoveStep <= 50 ? Scrollable.defaultSpeedValue.md : Scrollable.defaultSpeedValue.min;
+			this.speed =
+				mouseMoveStep <= 20 ? Scrollable.defaultSpeedValue.md : Scrollable.defaultSpeedValue.min + 1;
 			//console.log(this.speed, mouseMoveStep);
 		}
 	}
