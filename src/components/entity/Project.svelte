@@ -110,6 +110,12 @@
 			{#each info.tags as tag}
 				<span class="tag">{tag}</span>
 			{/each}
+
+			{#if info.is_under_maintainance}
+				<span class="tag tag-maintaiance">
+					{['Under maintainance', 'В процессе разработки'][languageIndex]}
+				</span>
+			{/if}
 		</div>
 	</div>
 
@@ -289,7 +295,8 @@
 				margin-top: 4%;
 				display: flex;
 				flex-wrap: wrap;
-				padding-left: 1.2rem;
+				column-gap: 0.5rem;
+				row-gap: 0.5rem;
 
 				.tag {
 					background-color: $clr-pink;
@@ -301,7 +308,14 @@
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					margin-right: 1.5%;
+
+					&.tag-maintaiance {
+						background-color: transparent;
+						color: $clr-pink !important;
+						border: 1px $clr-pink solid;
+						padding: 5px 7px;
+						margin-left: 5%;
+					}
 
 					@media (min-width: 150px) and (max-width: 750px) {
 						font-size: $fs-mid-mob;

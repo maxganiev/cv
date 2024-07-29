@@ -175,6 +175,11 @@
 	class Scrollable {
 		static zSpacing = -1600;
 		static zVals = [];
+		static mouseMoveStep = 0;
+		static defaultSpeedValue = {
+			min: 6,
+			md: 25
+		};
 
 		constructor(speed, currTop, lastPos, delta) {
 			this.speed = speed;
@@ -199,6 +204,8 @@
 					: scrolledProjectsElsLength + 1;
 			})();
 
+			if (this.speed === Scrollable.defaultSpeedValue.min) this.setSwipeSpeed();
+
 			if (this.isDown) this.clientTop -= this.speed;
 			else this.clientTop += this.speed;
 
@@ -218,9 +225,26 @@
 				Scrollable.zVals[i] += this.delta * distanceKoefficient;
 			}
 		}
+
+		setMouseMoveStep() {
+			Scrollable.mouseMoveStep++;
+			// console.log(Scrollable.mouseMoveStep);
+			return new Promise((resolve) =>
+				setTimeout(() => {
+					resolve(Scrollable.mouseMoveStep);
+				}, 1500)
+			);
+		}
+
+		async setSwipeSpeed() {
+			const mouseMoveStep = await this.setMouseMoveStep();
+			if (mouseMoveStep <= 5) return;
+			this.speed = mouseMoveStep <= 50 ? Scrollable.defaultSpeedValue.md : Scrollable.defaultSpeedValue.min;
+			//console.log(this.speed, mouseMoveStep);
+		}
 	}
 
-	const wheely = new Scrollable(6, null, 0, 0);
+	const wheely = new Scrollable(Scrollable.defaultSpeedValue.min, null, 0, 0);
 	const touchy = new Scrollable(12, null, 0, 0);
 	let bindedFunc = new Function();
 

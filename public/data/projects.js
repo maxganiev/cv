@@ -9,7 +9,8 @@ class Project {
 		/**@type {String[]} */
 		available_orientations,
 		/**@type {String[]} */
-		tags
+		tags,
+		is_under_maintainance = false
 	) {
 		this.id = Project.id++;
 		this.name = name;
@@ -18,6 +19,7 @@ class Project {
 		this.asset_folder = asset_folder;
 		this.available_orientations = available_orientations;
 		this.tags = tags;
+		this.is_under_maintainance = is_under_maintainance;
 
 		this.thumb = '/assets/imgs/projects/' + this.asset_folder + '/thumb.png';
 
@@ -71,12 +73,22 @@ export const projectItemsList = [
 			['JS', 'Laravel 5']
 		),
 		new Project(
-			'The Portal - a corporative ecosystem',
-			"A comprehensive platform that includes wide range of tools to serve needs of the company's employees - dynamic repors, graphic data, business instruments to provide fluid communications between multiple departments, etc. The platform is OAuth2 protected, so you has to be authorized to get access to the content.",
-			'https://portal.elcomspb.ru/',
-			'portal',
+			'DODO pizza timeline',
+			'Interactive timeline illustrating most significant time points of the DODO brand alogn with some statistics',
+			'https://dodo-timeline.dev.intuition.team/',
+			'dodo',
 			['landscape'],
-			['Vue2', 'Laravel 5']
+			['SvelteKit', 'Prisma'],
+			true
+		),
+		new Project(
+			'ESQ promo website',
+			'Promo page of ESQ brand industrial products. Lib-free (all UI components are custom-made)',
+			'http://176.57.220.55:4000/',
+			'esq',
+			['landscape'],
+			['SvelteKit', 'Prisma'],
+			true
 		)
 	],
 	//RU
@@ -106,12 +118,22 @@ export const projectItemsList = [
 			['JS', 'Laravel 5']
 		),
 		new Project(
-			'Портал - корпоративная экосистема',
-			'Сложная  платформа, включающая в себя широкий спектр инструментов для удовлетворения потребностей сотрудников компании — динамические отчеты, графики, бизнес-инструменты для обеспечения гибкого взаимодействия между разными отделами и т. д. Платформа защищена OAuth2, поэтому вы должны быть авторизованы для получения доступа к содержимому.',
-			'https://portal.elcomspb.ru/',
-			'portal',
+			'Таймлайн для ДОДО пиццы',
+			'Интерактивный таймлан, иллюстрирующий наиболее важные моменты существования бренда DODO, а также некоторые статистические данные',
+			'https://dodo-timeline.dev.intuition.team/',
+			'dodo',
 			['landscape'],
-			['Vue2', 'Laravel 5']
+			['SvelteKit', 'Prisma'],
+			true
+		),
+		new Project(
+			'Промо-сайт бренда ESQ',
+			'Рекламный сайт промышленной продукции ESQ. Все компоненты - самописные.',
+			'http://176.57.220.55:4000/',
+			'esq',
+			['landscape'],
+			['SvelteKit', 'Prisma'],
+			true
 		)
 	]
 ];
