@@ -113,7 +113,7 @@
 
 			{#if info.is_under_maintainance}
 				<span class="tag tag-maintaiance">
-					{['Under maintainance', 'В процессе разработки'][languageIndex]}
+					{['Under maintenance', 'В процессе разработки'][languageIndex]}
 				</span>
 			{/if}
 		</div>
