@@ -84,11 +84,10 @@ export const projectItemsList = [
 		new Project(
 			'ESQ promo website',
 			'Promo page of ESQ brand industrial products. Lib-free (all UI components are custom-made)',
-			'http://176.57.220.55:4000/',
+			'https://esq.elcomspb.ru/',
 			'esq',
 			['landscape'],
-			['SvelteKit', 'Prisma'],
-			true
+			['SvelteKit', 'Prisma']
 		)
 	],
 	//RU
@@ -129,11 +128,10 @@ export const projectItemsList = [
 		new Project(
 			'Промо-сайт бренда ESQ',
 			'Рекламный сайт промышленной продукции ESQ. Все компоненты - самописные.',
-			'http://176.57.220.55:4000/',
+			'https://esq.elcomspb.ru/',
 			'esq',
 			['landscape'],
-			['SvelteKit', 'Prisma'],
-			true
+			['SvelteKit', 'Prisma']
 		)
 	]
 ];

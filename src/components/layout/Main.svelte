@@ -301,6 +301,8 @@
 
 	let sectionDetails;
 	function onMainScroll() {
+		return false;
+
 		startAnimation = sectionDetails.getBoundingClientRect().top <= document.documentElement.scrollTop;
 		animateAstro(Date.now());
 	}
@@ -421,7 +423,7 @@
 		</div>
 	</section>
 	<section class="bg-contrast-white z-4" bind:this="{sectionDetails}">
-		<div class="astro" bind:this="{astro}"><img src="/assets/imgs/bg-2.png" alt="astronaut" /></div>
+		<!-- <div class="astro" bind:this="{astro}"><img src="/assets/imgs/bg-2.png" alt="astronaut" /></div> -->
 
 		<div class="details">
 			<strong
