@@ -23,28 +23,6 @@
 		width: 760
 	};
 
-	function swipePreviewOrientation(e) {
-		const btn = e?.target || btnDefaultFocused;
-		const desktopSelected = btn.getAttribute('data-screen-type') === 'desktop';
-		const btnParentEl = btn.parentElement;
-
-		//reset styling
-		const btnIndexToResetStyle = btnParentEl.children.length > 1 ? (desktopSelected ? 1 : 0) : 0;
-		btnParentEl.children[btnIndexToResetStyle].classList.remove('focused');
-		btnParentEl.children[btnIndexToResetStyle].style.background = `url(/assets/imgs/${
-			btnIndexToResetStyle === 0 ? 'desktop.svg' : 'mobile.svg'
-		}) no-repeat center center/contain`;
-
-		//apply styling
-		btn.classList.add('focused');
-		btn.style.background = `url(/assets/imgs/${
-			desktopSelected ? 'desktop-maline.svg' : 'mobile-maline.svg'
-		}) no-repeat center center/contain`;
-
-		//set orientation
-		orientationOptions.setCurrentOrientation(desktopSelected);
-	}
-
 	let tabPanel, currentTab;
 	function swipeTabs(e) {
 		if (e.target.tagName !== 'BUTTON') return;
@@ -60,13 +38,18 @@
 	let video,
 		canplay = false;
 
+	$: $screenParams.width,
+		(() => {
+			const isMobile = $screenParams.width <= breakpoint.width;
+			orientationOptions.setCurrentOrientation(!isMobile);
+		})();
+
 	$: if (video) {
 		video.oncanplay = () => (canplay = true);
 	}
 
 	onMount(() => {
 		currentTab = 'bio';
-		swipePreviewOrientation();
 	});
 </script>
 
@@ -93,7 +76,7 @@
 			? 'block'
 			: 'none'}"
 	>
-		<h3>{info.name}</h3>
+		<h3>{info.name} </h3>
 		<div>
 			{#if info.desc.indexOf('\n') !== -1}
 				<ul>
@@ -146,21 +129,6 @@
 
 			{#if !video || !canplay}
 				<Loader />
-			{/if}
-		</div>
-
-		<div class="orientation-switch">
-			{#if info.available_orientations.includes('landscape')}
-				<button
-					class="transition-02 focused"
-					data-screen-type="desktop"
-					on:click="{swipePreviewOrientation}"
-					bind:this="{btnDefaultFocused}"
-				></button>
-			{/if}
-			{#if info.available_orientations.includes('portrait')}
-				<button class="transition-02" data-screen-type="mobile" on:click="{swipePreviewOrientation}"
-				></button>
 			{/if}
 		</div>
 	</div>

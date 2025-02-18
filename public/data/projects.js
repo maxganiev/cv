@@ -49,6 +49,14 @@ export const projectItemsList = [
 	//ENG
 	[
 		new Project(
+			'ESQ promo website',
+			'Promo page of ESQ brand industrial products. Lib-free (all UI components are custom-made)',
+			'https://esq.elcomspb.ru/',
+			'esq',
+			['landscape', 'portrait'],
+			['SvelteKit', 'Prisma']
+		),
+		new Project(
 			'Organizational chart editor',
 			'This tool allows easily manipulate an organizational structure using visual interface, specifically: \n as admin, you can edit existing schema or build it from scratch; \n you are also free to update employees personal data including photos; \n to "fire" or to "hire" emplyees with a button click;\n as a guest, you can view schema or search users of releavant department \n <a class="inbuilt-link" href="https://portal.elcomspb.ru/interactive-scheme" target="_blank">And this is how the final versions of schemas <strong style="color: #BF4081; cursor: pointer;">looks</strong>. You can\'t do much here as only admins have CRUD functionality.</a>',
 			'https://schema-draggable.netlify.app/',
@@ -57,41 +65,34 @@ export const projectItemsList = [
 			['Vue2', 'Laravel 5']
 		),
 		new Project(
-			'High voltage motor configurator',
-			'This configurator is one of multiples in the series, it does basically what it is called - helps you to select proper electric motor, choose necessary configuration, check its cost and share PDF proposal with your customer. There are also configurators for other types of electric motors, also for pumps, control panels etc.',
-			'https://beta.elcomspb.ru/tool/highvolt_conf',
-			'hvm',
+			'Atomy new member welcome page',
+			'The welcome page for a new cosmetic reseller team member - in essence, a simple input form with some interactive bio.',
+			'https://atomy-rus.netlify.app/',
+			'atomy',
 			['landscape', 'portrait'],
-			['SvelteKit', 'Prisma']
-		),
-		new Project(
-			'Pumps selector',
-			'A specific tool for technical staff that helps you to choose an industrial electric pump by either entering necessary duty points or by using interactive chart. The selector also provides real-time prices, we also plan to include real-time stock availability. It also suggests you related products.',
-			'https://old.elcomspb.ru/pumps_selector/',
-			'pump',
-			['landscape', 'portrait'],
-			['JS', 'Laravel 5']
-		),
-		new Project(
-			'DODO pizza timeline',
-			'Interactive timeline illustrating most significant time points of the DODO brand alogn with some statistics',
-			'https://dodo-timeline.dev.intuition.team/',
-			'dodo',
-			['landscape'],
-			['SvelteKit', 'Prisma'],
+			['Vue 3', 'Tailwind', 'Astro'],
 			true
 		),
 		new Project(
-			'ESQ promo website',
-			'Promo page of ESQ brand industrial products. Lib-free (all UI components are custom-made)',
-			'https://esq.elcomspb.ru/',
-			'esq',
-			['landscape'],
-			['SvelteKit', 'Prisma']
+			'Industrial pump selection tool',
+			'The tool to select right water pumps per duty points provided.',
+			'http://77.222.43.140:4000/',
+			'jetex',
+			['landscape', 'portrait'],
+			['SvelteKit', 'Prisma'],
+			true
 		)
 	],
 	//RU
 	[
+		new Project(
+			'Промо-сайт бренда ESQ',
+			'Рекламный сайт промышленной продукции ESQ. Все компоненты - самописные.',
+			'https://esq.elcomspb.ru/',
+			'esq',
+			['landscape', 'portrait'],
+			['SvelteKit', 'Prisma']
+		),
 		new Project(
 			'Редактор организационной структуры',
 			'Позволяет управлять структурой организации при помощи визуального интерфейса, а именно: \n как администратор Вы можете редактировать существующую структуру подчиненности внутри компании либо создавать ее с нуля; \n обновлять личную информацию о сотрудниках, включая фото; \n "увольнять" или "нанимать" сотрудников кликом мыши; \n как гость, Вы сможете работать со схемой в режиме просмотра и искать сотрудников необходимых отделов;\n <a class="inbuilt-link" href="https://portal.elcomspb.ru/interactive-scheme" target="_blank">А так выглядят схемы в <strong style="color: #BF4081; cursor: pointer;">финальной версии</strong>. Вносить в них изменения могут только администраторы.',
@@ -101,37 +102,22 @@ export const projectItemsList = [
 			['Vue2', 'Laravel 5']
 		),
 		new Project(
-			'Конфигуратор высоковольтных электродвигателей',
-			'Один из множества в серии, его функционал отражается в названии: с его помощью вы можете сконфигурировать высоковольтный двигатель и сохранить результат в PDF. В серии также присутствуют конфигураторы для других типов электродвигателей, а также для насосов, шкафов управления и т.п.',
-			'https://beta.elcomspb.ru/tool/highvolt_conf',
-			'hvm',
+			'Приветственная страница для новых участников Atomy',
+			'Приветственная страница для нового члена команды по продаже косметики. По сути, это простая форма ввода с интерактивным био.',
+			'https://atomy-rus.netlify.app/',
+			'atomy',
 			['landscape', 'portrait'],
-			['SvelteKit', 'Prisma']
-		),
-		new Project(
-			'Подбор насосного оборудования',
-			'Специализированный продукт для технических сотрудников, который поможет с подбором промышленного электронасоса по рабочим точкам либо с помощью интерактивного графика. В инструменте также выводятся цены на оборудование, обновляемые в режиме реального времени, также планируется добавить публикацию актуальных складских остатков. Также предлагаются сопутствующие товары.',
-			'https://old.elcomspb.ru/pumps_selector/',
-			'pump',
-			['landscape', 'portrait'],
-			['JS', 'Laravel 5']
-		),
-		new Project(
-			'Таймлайн для ДОДО пиццы',
-			'Интерактивный таймлан, иллюстрирующий наиболее важные моменты существования бренда DODO, а также некоторые статистические данные',
-			'https://dodo-timeline.dev.intuition.team/',
-			'dodo',
-			['landscape'],
-			['SvelteKit', 'Prisma'],
+			['Vue 3', 'Tailwind', 'Astro'],
 			true
 		),
 		new Project(
-			'Промо-сайт бренда ESQ',
-			'Рекламный сайт промышленной продукции ESQ. Все компоненты - самописные.',
-			'https://esq.elcomspb.ru/',
-			'esq',
-			['landscape'],
-			['SvelteKit', 'Prisma']
+			'Инструмент для подбора промышленных насосов ',
+			'Инструмент для подбора подходящих водяных насосов в зависимости от заданных рабочих точек.',
+			'http://77.222.43.140:4000/',
+			'jetex',
+			['landscape', 'portrait'],
+			['SvelteKit', 'Prisma'],
+			true
 		)
 	]
 ];

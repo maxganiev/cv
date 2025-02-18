@@ -16,8 +16,8 @@ export const bioItemsList = [
 		),
 		new BioItem(
 			'Stack',
-			'JS [SvelteKit, Vue]; NodeJS [express]; CSS3 [SASS, Bootstrap, Vuetify]; static site generators [Astro]; PHP [Laravel]; mySQL with (-out) ORMs like Prisma; server configuration [NGINX, Apache]; web compilers [Vite, Webpack, Snowpack]; SEO optimization'
-		),
+			'JS [SvelteKit, Vue]; NodeJS [express]; CSS3 [SASS, Tailwind, Bootstrap, Vuetify]; static site generators [Astro]; PHP [Laravel]; mySQL with (-out) ORMs like Prisma; server configuration [NGINX, Apache]; web compilers [Vite, Webpack, Snowpack]; SEO optimization'
+		)
 	],
 	[
 		new BioItem('ФИО', 'Максим Ганиев'),
@@ -29,7 +29,7 @@ export const bioItemsList = [
 		),
 		new BioItem(
 			'Стэк',
-			'JS [SvelteKit, Vue]; NodeJS [express]; CSS3 [SASS, Bootstrap, Vuetify]; генераторы статических сайтов [Astro]; PHP [Laravel]; mySQL с ORM (Prisma) и без; конфигурация сервера [NGINX, Apache]; сборщики [Vite, Webpack, Snowpack]; SEO оптимизация'
-		),
-	],
+			'JS [SvelteKit, Vue]; NodeJS [express]; CSS3 [SASS, Tailwind, Bootstrap, Vuetify]; генераторы статических сайтов [Astro]; PHP [Laravel]; mySQL с ORM (Prisma) и без; конфигурация сервера [NGINX, Apache]; сборщики [Vite, Webpack, Snowpack]; SEO оптимизация'
+		)
+	]
 ];
