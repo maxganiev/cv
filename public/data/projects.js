@@ -64,15 +64,15 @@ export const projectItemsList = [
 			['landscape'],
 			['Vue2', 'Laravel 5']
 		),
-		new Project(
-			'Atomy new member welcome page',
-			'The welcome page for a new cosmetic reseller team member - in essence, a simple input form with some interactive bio.',
-			'https://atomy-rus.netlify.app/',
-			'atomy',
-			['landscape', 'portrait'],
-			['Vue 3', 'Tailwind', 'Astro'],
-			true
-		),
+		// new Project(
+		// 	'Atomy new member welcome page',
+		// 	'The welcome page for a new cosmetic reseller team member - in essence, a simple input form with some interactive bio.',
+		// 	'https://atomy-rus.netlify.app/',
+		// 	'atomy',
+		// 	['landscape', 'portrait'],
+		// 	['Vue 3', 'Tailwind', 'Astro'],
+		// 	true
+		// ),
 		new Project(
 			'Industrial pump selection tool',
 			'The tool to select right water pumps per duty points provided.',
@@ -101,15 +101,15 @@ export const projectItemsList = [
 			['landscape'],
 			['Vue2', 'Laravel 5']
 		),
-		new Project(
-			'Приветственная страница для новых участников Atomy',
-			'Приветственная страница для нового члена команды по продаже косметики. По сути, это простая форма ввода с интерактивным био.',
-			'https://atomy-rus.netlify.app/',
-			'atomy',
-			['landscape', 'portrait'],
-			['Vue 3', 'Tailwind', 'Astro'],
-			true
-		),
+		// new Project(
+		// 	'Приветственная страница для новых участников Atomy',
+		// 	'Приветственная страница для нового члена команды по продаже косметики. По сути, это простая форма ввода с интерактивным био.',
+		// 	'https://atomy-rus.netlify.app/',
+		// 	'atomy',
+		// 	['landscape', 'portrait'],
+		// 	['Vue 3', 'Tailwind', 'Astro'],
+		// 	true
+		// ),
 		new Project(
 			'Инструмент для подбора промышленных насосов ',
 			'Инструмент для подбора подходящих водяных насосов в зависимости от заданных рабочих точек.',
